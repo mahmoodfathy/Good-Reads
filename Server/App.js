@@ -1,25 +1,29 @@
-const express=require('express');
-const authorRouter=require('./Routes/authors');
-require('./boot/connectionDB');
+const express = require('express');
+const bookRouter = require('./Routes/Book')
+require('./boot/dbConnection');
+const app = express();
 
-const PORT=process.env.PORT ||3000;
+/* Environment variables */
+const PORT = process.env.PORT || 3000
 
-const app=express();
 
+/** MiddleWares */
 
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-
-app.use((req,res,next)=>{
-   console.log(new Date(),req.url,req.method)
-   next();
+app.use(express.json())
+app.use(express.urlencoded)
+app.use((req, res, next) => {
+    console.log(`${new Date()} -- ${req.method} -- ${req.url}`);
+    next();
 })
+
+/** Routes */
+app.use('/book', bookRouter)
 app.use('/authors',authorRouter);
-app.use((err,req,res,next)=>{
-      res.status(401);
-      res.send(err);
+
+
+/** Started Services */
+
+app.listen(PORT, (err) => {
+    if (!err) return console.log(`Server Started at PORT ${PORT}`);
 })
-app.listen(PORT,(err)=>{
-    if(err) console.error(err)
-    else console.log("server express start")
-})
+
