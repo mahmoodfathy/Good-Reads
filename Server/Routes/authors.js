@@ -1,16 +1,16 @@
-const express = require('express')
-const AuthorModel = require('../Models/author');
+const express = require("express");
+const AuthorModel = require("../Models/author");
 const authorRouter = express.Router();
-const AuthorController =require('../Controllers/author');
+const AuthorController = require("../Controllers/author");
 
-authorRouter.post("/", AuthorController.CreateAuthor)
+authorRouter.post("/", AuthorController.createAuthor);
 
-authorRouter.get("/", AuthorController.Get_all_Authors)
+authorRouter.get("/", AuthorController.getAllAuthors);
 
-authorRouter.get("/:id",AuthorController.GetAuthor)
+authorRouter.get("/:id", AuthorController.getAuthor);
 
-authorRouter.delete("/:id",AuthorController.DeleteAuthor)
+authorRouter.delete("/:id", AuthorController.deleteAuthor);
 
-authorRouter.patch("/:id", AuthorController.UpdateAuthor)
+authorRouter.patch("/:id", AuthorController.updateAuthor);
 
 module.exports = authorRouter;
