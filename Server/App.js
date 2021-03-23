@@ -18,6 +18,7 @@ app.use((req, res, next) => {
 
 /** Routes */
 app.use('/book', bookRouter)
+app.use('/authors',authorRouter);
 
 
 /** Started Services */
