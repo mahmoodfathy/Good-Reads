@@ -5,16 +5,15 @@ exports.addBooks= async (req,res)=>{
     console.log(req.body);
     const book = new BookModel({
         name: req.body.name,
-        category: req.body.category,
-        author: req.body.author,
+        category: req.body.categoryId,
+        author: req.body.authorId,
         description: req.body.description,
         bookImage: req.body.bookImage
     })
-    console.log(book);
     try {
         const newBook = await book.save();
         // const addedBook = await BookModel.findById({ _id: newBook._id }).populate('category').populate('author');
-        res.json(newBook);
+        res.status(200).json(newBook);
     } catch (err) {
         return res.status(500).json(err);
     }
@@ -26,11 +25,11 @@ exports.getAllBooks=async (req,res)=>{
     try {
         const books = await BookModel.find().populate('category').populate('author');
         if(!books){
-            res.status(400);
+            res.status(404);
             return res.send({error: "books not found"});
         }
 
-        res.json(books)
+        res.status(200).json(books)
     } catch (err) {
         console.log(err);
         return res.status(500).json(err)
@@ -43,10 +42,9 @@ exports.getOneBook=async (req,res)=>{
     try{
         const book= await BookModel.findById({_id: bookId}).populate('category').populate('author');
         if(!book){
-            res.status(400);
-            return res.send({error: "book not found"});
+            return res.status(404).send({error: "book not found"});
         }
-        res.json(book);
+        res.status(200).json(book);
     }catch (err){
         return res.status(500).json(err);
     }
@@ -58,10 +56,9 @@ exports.deleteBook=async (req,res)=>{
     const bookId = req.params.id
     try {
         const deletedState = await BookModel.findByIdAndDelete(bookId);
-        res.json(deletedState);
+        res.status(200).json(deletedState);
     }
     catch (err) {
-        console.log(err);
         return res.status(500).json(err)
     }
 }
@@ -79,8 +76,8 @@ exports.editBook= async (req,res)=>{
     try {
         const updatedBook = await BookModel.findByIdAndUpdate(id, newBookData, { new: true }).populate('category').populate('author');
         if(!updatedBook){
-            res.status(400);
-            return res.send({error: "book not exist"});
+            res.status(404);
+            return res.status(200).send({error: "book not exist"});
         }
         res.json(updatedBook);
     } catch (err) {
