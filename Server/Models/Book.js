@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const bookSchema= new mongoose.Schema({
-    name: {type:String, required:true },
+    name: {type:String, required:[true,'Please Enter book Name'] },
     cover:{type:String},
-    description :{type:String, minlength:10, maxLength:20},
+    description :{type:String, minlength:10, maxLength:[20,'Maximum description Length is 20 character']},
     details:[{Paperback:{type:String, maxLength: 2}},{PublishedDate:{type:Date}},{OriginalTitle:{type:String}},
         {EditionLanguage:{type:String}},{Characters:{type:String}}],
     totalRatingCount:{type:Number,default:0},
