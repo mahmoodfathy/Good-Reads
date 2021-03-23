@@ -1,29 +1,20 @@
-const express = require('express');
-const bookRouter = require('./Routes/Book')
-require('./boot/dbConnection');
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv").config();
+
+const morgan = require("morgan");
+const categoryRoutes = require("./Routes/Category");
+const bookRouter = require("./Routes/Book");
 const app = express();
 
-/* Environment variables */
-const PORT = process.env.PORT || 3000
-
-
-/** MiddleWares */
-
-app.use(express.json())
-app.use(express.urlencoded)
-app.use((req, res, next) => {
-    console.log(`${new Date()} -- ${req.method} -- ${req.url}`);
-    next();
-})
-
+app.use(morgan("combined"));
+app.use(express.json());
+app.use(cors());
 /** Routes */
-app.use('/book', bookRouter)
-app.use('/authors',authorRouter);
+app.use("/book", bookRouter);
+app.use(categoryRoutes);
+require("./boot/dbConnection");
 
-
-/** Started Services */
-
-app.listen(PORT, (err) => {
-    if (!err) return console.log(`Server Started at PORT ${PORT}`);
-})
-
+app.listen(process.env.PORT, () => {
+  console.log(`server is listening on port ${process.env.PORT}`);
+});
