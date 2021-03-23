@@ -13,7 +13,7 @@ exports.CreateAuthor = async (req, res) => {
     //console.log(authorInstance.getFullName(),authorInstance.authorage())
     try {
         const NewAuthor = await authorInstance.save();
-        res.status(200).json({message:"Author Added Successfully"});
+        res.status(200).json({ message: "Author Added Successfully" });
     } catch (err) {
         return res.status(500).json(err)
     }
@@ -46,8 +46,8 @@ exports.GetAuthor = async (req, res) => {
             res.status(404);
             return res.send({ error: "Author not found" });
         }
-            res.status(200).json(oneAuthor);
-            console.log(oneAuthor);
+        res.status(200).json(oneAuthor);
+        console.log(oneAuthor);
     } catch (err) {
         return res.status(500).json(err)
     }
@@ -58,7 +58,7 @@ exports.DeleteAuthor = async (req, res) => {
     console.log("id:", id);
     try {
         const deletautho = await AuthorModel.findByIdAndDelete(id).select('-_id -__v');
-        res.status(200).json({message:"Author Deleted Successfully"});
+        res.status(200).json({ message: "Author Deleted Successfully" });
         //.catch((err) => { res.send('error occured deleted') })
     } catch (err) {
         return res.status(500).json(err)
@@ -67,7 +67,7 @@ exports.DeleteAuthor = async (req, res) => {
 exports.UpdateAuthor = async (req, res) => {
     const { id } = req.params;
     const data = req.body;
-    const authorInstance ={
+    const authorInstance = {
         firstname: data.firstname,
         lastname: data.lastname,
         dob: data.dob,
@@ -76,16 +76,20 @@ exports.UpdateAuthor = async (req, res) => {
         imageURL: data.imageURL,
     }
     console.log("id:", id);
-    try{
-    const updateAuthor=await AuthorModel.findByIdAndUpdate(id,authorInstance);
-        if(!updateAuthor){
-            res.status(404).json({message:"Author not updated"});
+    try {
+        const authorold = await AuthorModel.findById(id);
+        const { authorUpdated } = req.body;
+        const updatedf = { ...authorold, authorUpdated }
+        //await AuthorModel.updateOne(updatedf);
+        const updateAuthor=await AuthorModel.updateOne(updatedf);
+        if (!updateAuthor) {
+            res.status(404).json({ message: "Author not updated" });
         }
-        else{
-            res.status(200).json({message:"Author updateded Successfully"});
+        else {
+            res.status(200).json({ message: "Author updateded Successfully" });
         }
-    }catch(err){
+    } catch (err) {
         return res.status(500).json(err)
     }
-           
+
 }
