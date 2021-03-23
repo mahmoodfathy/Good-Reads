@@ -43,7 +43,7 @@ exports.GetAuthor = async (req, res) => {
     try {
         const oneAuthor = await AuthorModel.findById(id).select('-_id -__v');
         if (!oneAuthor) {
-            res.status(400);
+            res.status(404);
             return res.send({ error: "Author not found" });
         }
             res.status(200).json(oneAuthor);
@@ -72,14 +72,14 @@ exports.UpdateAuthor = async (req, res) => {
         lastname: data.lastname,
         dob: data.dob,
         shortdescription: data.shortdescription,
-        //books: data.books,
+        books: data.books,
         imageURL: data.imageURL,
     }
     console.log("id:", id);
     try{
     const updateAuthor=await AuthorModel.findByIdAndUpdate(id,authorInstance);
         if(!updateAuthor){
-            res.status(400).json({message:"Author not updated"});
+            res.status(404).json({message:"Author not updated"});
         }
         else{
             res.status(200).json({message:"Author updateded Successfully"});
