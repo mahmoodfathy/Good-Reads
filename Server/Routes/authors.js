@@ -2,15 +2,16 @@ const express = require("express");
 const AuthorModel = require("../Models/author");
 const authorRouter = express.Router();
 const AuthorController = require("../Controllers/author");
+const userAuth = require("../MiddleWares/User");
 
-authorRouter.post("/", AuthorController.createAuthor);
+authorRouter.post("/", userAuth.auth, AuthorController.createAuthor);
 
 authorRouter.get("/", AuthorController.getAllAuthors);
 
 authorRouter.get("/:id", AuthorController.getAuthor);
 
-authorRouter.delete("/:id", AuthorController.deleteAuthor);
+authorRouter.delete("/:id", userAuth.auth, AuthorController.deleteAuthor);
 
-authorRouter.patch("/:id", AuthorController.updateAuthor);
+authorRouter.patch("/:id", userAuth.auth, AuthorController.updateAuthor);
 
 module.exports = authorRouter;

@@ -1,12 +1,12 @@
 const express = require('express');
 const categoryController = require('../Controllers/Category');
 const router = express.Router();
+const userAuth = require("../MiddleWares/User");
 
-
-router.post("/category",categoryController.addCategory);
-router.get('/category',categoryController.getCategories);
-router.patch('/category/:id',categoryController.updateCategroy);
-router.delete('/category/:id',categoryController.deleteCategroy);
+router.post("/", userAuth.auth, categoryController.addCategory);
+router.get('/', categoryController.getCategories);
+router.patch('/:id', userAuth.auth, categoryController.updateCategroy);
+router.delete('/:id', userAuth.auth, categoryController.deleteCategroy);
 
 
 module.exports = router;
