@@ -1,17 +1,27 @@
-<ul class="navbar-nav"> 
+<body>
+<ul class="navbar-nav">
   <li class="nav-item">
-    <a class="nav-link" 
-      [routerLink]="['register']" routerActive="active">Register
+    <a class="nav-link" [routerLink]="['register']" routerActive="active">Register
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" 
-      [routerLink]="['login']" routerActive="active">Login
+    <a class="nav-link" [routerLink]="['login']" routerActive="active">Login
     </a>
   </li>
 </ul>
-<div>
 
-  <router-outlet></router-outlet>
 
-</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="card card-signin flex-row my-5">
+          <div class="card-img-left d-none d-md-flex">
+            <!-- Background image for card set in CSS! -->
+          </div>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
