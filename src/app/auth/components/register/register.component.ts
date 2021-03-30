@@ -1,6 +1,6 @@
-import { Component,EventEmitter, Input, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder,Validators } from '@angular/forms';
+import {CustomValidationService} from '../services/custom-validation.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -8,33 +8,36 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class RegisterComponent {
 
-  constructor() { }
+  userForm=this.fb.group({
+    username:["",[Validators.required,Validators.minLength(3)]],
+    email: ["", [Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+    password:["",[Validators.required,Validators.minLength(8)]]
+  })
+    
+  constructor(private fb:FormBuilder,
+    private customValid:CustomValidationService) {}
+  
+   ngOnInit(){
 
-  ngOnInit(): void {
-  }
-  ame: string = "";
-  age:number=0;
-  myForm=new FormGroup({
-        name:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
-        age:new FormControl('',[Validators.required,Validators.min(18)])
-  });
-  get nameStatus(){
-      console.log(this.myForm.controls.name.valid)
-      return this.myForm.controls.name.valid
+   }
+   sendDataRegistration(){
 
+   }
+   getData(){
+
+   }
+   
+  onSubmit(){
+    if (this.userForm.invalid) {
+    
+      console.log("invalid");
+      console.log(this.userForm.status);
+      return;
   }
-  get ageStatus(){
-      console.log(this.myForm.controls.age.valid)
-      return this.myForm.controls.age.valid
+    console.log(this.userForm.value);
   }
-  submitForm(){
-      console.log(this.myForm)
-      this.data.emit({name:this.myForm.value.name,age:this.myForm.value.age})
-      
-  }
-  //@Output() nameChange:EventEmitter<string>=new EventEmitter();
-  // @Output() ageChange:EventEmitter<string>=new EventEmitter();
-  // @Output() addnewrow:EventEmitter<boolean>=new EventEmitter();
-  @Output() data:EventEmitter<{name:string,age:number}>=new EventEmitter();
+
+
 
 }
+

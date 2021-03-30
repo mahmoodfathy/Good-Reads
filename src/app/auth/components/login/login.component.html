@@ -1,18 +1,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="card-body">
     <h5 class="card-title text-center">Login</h5>
-    <form class="form-signin">
+    <form class="form-signin" [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <div class="form-label-group">
         <label for="inputUserame">Username</label>
-        <input type="text" id="inputUserame" class="form-control shadow p-3 mb-5 bg-body rounded" placeholder="Username" required autofocus>
+        <input type="text" formControlName="username" id="username" class="form-control shadow p-3 mb-5 bg-body rounded" placeholder="Username" required autofocus>
         
       </div>
       <div class="form-label-group">
         <label for="inputPassword">Password</label>
-        <input type="password" id="inputPassword" class="form-control shadow p-3 mb-5 bg-body rounded" placeholder="Password" required>
+        <input type="password" formControlName="password" id="password" class="form-control shadow p-3 mb-5 bg-body rounded" placeholder="Password" required>
       </div>
       <hr class="my-4">
-      <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
+      <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase">Login</button>
       <a class="d-block text-center mt-2 small" href="#">Sign up</a>
      
       <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fa fa-google"></i> Sign up with Google</button>
