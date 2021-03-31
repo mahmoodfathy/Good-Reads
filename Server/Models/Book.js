@@ -19,7 +19,7 @@ const bookSchema = new mongoose.Schema({
   totalReviewsCount: { type: Number, default: 0 },
   addedDate: { type: Date, default: Date.now },
   review: { type: String },
-  rating: { type: String, default: 0 },
+  rating: { type: Number, default: 0 },
   author: { type: mongoose.Schema.Types.ObjectId, ref: "Author" },
   category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
 });

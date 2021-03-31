@@ -4,20 +4,24 @@ const booksController=require('../Controllers/Book');
 
 /** APIs **/
 
-/* Add Book To DB */
+
+/* Add Book To DB  Need Admin Authentication */
 bookRouter.post('/', booksController.addBooks);
+
+/* Delete one Book From DB Need Admin Authentication */
+bookRouter.delete('/:id',booksController.deleteBook);
+
+/* Update one Book From DB Need Admin Authentication */
+bookRouter.patch('/:id',booksController.editBook);
 
 /* List All Books From DB */
 bookRouter.get('/', booksController.getAllBooks);
 
-/* List one Book From DB */
+/* Get one Book From DB */
 bookRouter.get('/:id',booksController.getOneBook);
 
-/* Delete one Book From DB */
-bookRouter.delete('/:id',booksController.deleteBook);
-
-/* Update one Book From DB */
-bookRouter.patch('/:id',booksController.editBook);
+/* List Most Popular Books From DB */
+bookRouter.get('/top', booksController.getMostPopular);
 
 
 

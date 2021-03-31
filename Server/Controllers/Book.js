@@ -1,5 +1,5 @@
-const { updateMany } = require("../Models/Book");
 const BookModel = require("../Models/Book");
+const booksPaginationMiddleware = require('../MiddleWares/Book');
 
 /* Add Book To DB */
 exports.addBooks = async (req, res) => {
@@ -12,26 +12,26 @@ exports.addBooks = async (req, res) => {
     bookImage,
   });
   try {
-    const newBook = await book.save();
-    // const addedBook = await BookModel.findById({ _id: newBook._id }).populate('category').populate('author');
-    return res.status(200).json(newBook);
+    await book.save();
+    return res.status(200).json({message:"book Added successfully"});
   } catch (err) {
     return res.status(500).json(err);
   }
 };
 
-/* List All Books From DB */
-exports.getAllBooks = async (req, res) => {
+/* List All Books From DB Need Pagination */
+exports.getAllBooks = async (req, res,next) => {
   try {
+    const {page = 1,limit = 10} = parseInt(req.query);
+    const startIndex = (page - 1 ) * limit;
+    const endIndex = limit * page;
     const books = await BookModel.find()
-      .populate("category")
-      .populate("author")
-      .exec();
+        .limit(endIndex)
+        .skip(startIndex);
     if (!books) {
       res.status(404);
       return res.send({ error: "books not found" });
     }
-
     return res.status(200).json(books);
   } catch (err) {
     console.log(err);
@@ -43,9 +43,7 @@ exports.getAllBooks = async (req, res) => {
 exports.getOneBook = async (req, res) => {
   const bookId = req.params.id;
   try {
-    const book = await BookModel.findById({ _id: bookId })
-      .populate("category")
-      .populate("author");
+    const book = await BookModel.findById({ _id: bookId }).populate("category").populate("author");
     if (!book) {
       return res.status(404).send({ error: "book not found" });
     }
@@ -60,6 +58,7 @@ exports.deleteBook = async (req, res) => {
   const bookId = req.params.id;
   try {
     const deletedState = await BookModel.findByIdAndDelete(bookId);
+    console.log(deletedState);
     if (!deletedState) {
       return res.status(404).json({ message: "Book not found!" });
     }
@@ -85,3 +84,16 @@ exports.editBook = async (req, res) => {
     return res.status(500).json(err);
   }
 };
+
+/* List Most Popular Books From DB  Need Pagination */
+exports.getMostPopular= async (req,res,next)=>{
+  try{
+    const topBooks = await BookModel.find({ avgRating: { $gt: 3 } })
+    if(!topBooks){
+      return res.status(404).json({ message: "No Popular books found" });
+    }
+    return res.status(200).json(topBooks);
+  }catch (err){
+    return res.status(500).json(err);
+  }
+}

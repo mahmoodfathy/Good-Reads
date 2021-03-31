@@ -35,7 +35,7 @@ exports.getAllAuthors = async (request, response) => {
     }
     return response.status(200).json(Authors);
   } catch (err) {
-    return res.status(500).json(err);
+    return response.status(500).json(err);
   }
 };
 exports.getAuthor = async (req, res) => {
