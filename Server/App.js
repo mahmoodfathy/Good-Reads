@@ -31,7 +31,7 @@ app.use(cors());
 app.use("/user", userRoute);
 app.use("/book", bookRoute);
 app.use("/author", authorRoutes);
-app.use(categoryRoutes);
+app.use("/category", categoryRoutes);
 require("./boot/dbConnection");
 
 app.listen(PORT, (err) => {
