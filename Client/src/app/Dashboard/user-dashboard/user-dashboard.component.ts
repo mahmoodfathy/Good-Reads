@@ -13,6 +13,7 @@ export class UserDashboardComponent implements OnInit {
   userBooks:Array<any> = [];
   filteredArray:Array<any> = this.userBooks;
   subscriber:any;
+  filterType:string = "all";
   
   ngOnDestroy(): void {
     this.subscriber.unsubscribe()
@@ -39,6 +40,7 @@ export class UserDashboardComponent implements OnInit {
   }
   
   booksFilter(filterType:string){
+    this.filterType = filterType;
     switch(filterType){
       case "all":
         this.filteredArray = [...this.userBooks];
@@ -55,6 +57,25 @@ export class UserDashboardComponent implements OnInit {
       default:
         break;
     }
+  }
+  
+  onUpdateList(event:any){
+    let newArr = [];
+    console.log(event);
+    newArr = this.userBooks.map(bookObj => {
+        if(bookObj.book._id == event.id){
+          return {shelf: event.shelf, book: {...bookObj.book}};
+        }
+        return bookObj;
+    });
+    
+    this.userBooks = newArr;
+    if(this.filterType != "all")
+      this.filterByShelf(this.filterType);
+    else
+      this.filteredArray = [...this.userBooks];
+    console.log(this.filteredArray);
+    console.log(this.filterType);
   }
 
 }

@@ -6,5 +6,5 @@
         <button class="btn btn-primary" (click)="booksFilter('want to read')">Want to read</button>
     </div>
     
-    <app-books-table [booksArr]="filteredArray"></app-books-table>
+    <app-books-table [booksArr]="filteredArray" (updateList)="onUpdateList($event)"></app-books-table>
 </div>
