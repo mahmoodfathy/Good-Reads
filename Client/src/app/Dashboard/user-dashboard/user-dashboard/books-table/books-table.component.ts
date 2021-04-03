@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { UserBooksService } from '../../../Services/userBooks.service';
+import { UserBooksService } from '../../../../Services/userBooks.service';
 
 @Component({
   selector: 'app-books-table',

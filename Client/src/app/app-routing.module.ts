@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserDashboardComponent } from './Dashboard/user-dashboard/user-dashboard.component';
+import { UserDashboardComponent } from './Dashboard/user-dashboard/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   {path:"home",component:UserDashboardComponent}
