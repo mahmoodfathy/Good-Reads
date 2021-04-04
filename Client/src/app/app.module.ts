@@ -4,21 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './Dashboard/category/category.component';
-import { SignupComponent } from './Auth/Signup/signup/signup.component';
+import { SignupComponent } from './Auth/signup/signup.component';
 import { SigninComponent } from './Auth/signin/signin.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardModule } from './Dashboard/dashboard/dashboard.module';
+import { BookCardComponent } from './Shared/book-card/book-card.component';
+import { CategoriesComponent } from './Shared/categories/categories.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CategoryComponent,
-    SignupComponent,
-    SigninComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent, SignupComponent, SigninComponent, BookCardComponent, CategoriesComponent],
+  imports: [BrowserModule, AppRoutingModule, DashboardModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
