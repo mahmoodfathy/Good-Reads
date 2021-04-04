@@ -4,21 +4,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './Dashboard/category/category.component';
-import { SignupComponent } from './Auth/Signup/signup/signup.component';
-import { SigninComponent } from './Auth/signin/signin.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserDashboardModule } from './Dashboard/user-dashboard/user-dashboard.module';
+
+/*import { SignupComponent } from './Auth/Signup/signup/signup.component';
+import { SigninComponent } from './Auth/signin/signin.component';*/
 
 @NgModule({
   declarations: [
     AppComponent,
-    CategoryComponent,
-    SignupComponent,
-    SigninComponent
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    NgbModule,
+    UserDashboardModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
