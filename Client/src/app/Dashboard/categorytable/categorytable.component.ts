@@ -60,7 +60,7 @@ export class CategorytableComponent implements OnInit, OnDestroy {
       .subscribe((response: any) => {
         // console.log(response);
         // console.log(this.subscriber);
-        this.categories = response.body;
+        this.categories = response;
         this.cdRef.detectChanges();
       });
     // this.getId();

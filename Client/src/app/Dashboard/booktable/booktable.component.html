@@ -109,7 +109,7 @@
       </td>
       <td>{{ book.author ? book.author.firstname : null }}</td>
       <td>{{ book.cover }}</td>
-      <td>{{ book.category.category }}</td>
+      <td>{{ book.category ? book.category.category : null }}</td>
       <td>
         <button
           class="btn btn-danger delete"
