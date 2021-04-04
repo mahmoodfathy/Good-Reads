@@ -58,7 +58,7 @@ describe("Category Tests", () => {
 
   it("Makes a Delete Request to Delete the newly created category by cypress", () => {
     cy.task("getCategoriesTask").then((categories) => {
-      const lastCategoryId = categories[2]._id;
+      const lastCategoryId = categories[2]._id; // change the index based on the record number in the database
       cy.request({
         url: `http://localhost:${PORT}/category/${lastCategoryId}`,
         method: "DELETE",

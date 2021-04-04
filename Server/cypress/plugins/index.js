@@ -40,3 +40,50 @@ module.exports = (on, config) => {
     },
   }); // end of task
 };
+module.exports = (on, config) => {
+  on("task", {
+    getBooksTask(id) {
+      return new Promise((resolve) => {
+        MongoClient.connect("mongodb://localhost:27017", (err, client) => {
+          if (err) {
+            console.log(`MONGO CONNECTION ERROR: ${err}`);
+            throw err;
+          } else {
+            const db = client.db("goodReads");
+            db.collection("books")
+              .find({})
+              .toArray(function (error, nodocs) {
+                // console.log(nodocs[2]._id);
+                resolve(nodocs);
+                client.close();
+              });
+          }
+        });
+      }); // end of return Promise
+    },
+  }); // end of task
+};
+
+module.exports = (on, config) => {
+  on("task", {
+    getAuthorsTask(id) {
+      return new Promise((resolve) => {
+        MongoClient.connect("mongodb://localhost:27017", (err, client) => {
+          if (err) {
+            console.log(`MONGO CONNECTION ERROR: ${err}`);
+            throw err;
+          } else {
+            const db = client.db("goodReads");
+            db.collection("authors")
+              .find({})
+              .toArray(function (error, nodocs) {
+                // console.log(nodocs[2]._id);
+                resolve(nodocs);
+                client.close();
+              });
+          }
+        });
+      }); // end of return Promise
+    },
+  }); // end of task
+};

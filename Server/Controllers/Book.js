@@ -3,13 +3,16 @@ const BookModel = require("../Models/Book");
 
 /* Add Book To DB */
 exports.addBooks = async (req, res) => {
-  const { name, category, author, description, bookImage } = req.body;
+  const { name, category, author, description, cover } = req.body;
+  if (!name || !category || !author || !description || !cover) {
+    return res.status(400).json({ message: "Field missing!" });
+  }
   const book = new BookModel({
     name,
     category,
     author,
     description,
-    bookImage,
+    cover,
   });
   try {
     const newBook = await book.save();
@@ -60,6 +63,7 @@ exports.deleteBook = async (req, res) => {
   const bookId = req.params.id;
   try {
     const deletedState = await BookModel.findByIdAndDelete(bookId);
+    console.log(deletedState);
     if (!deletedState) {
       return res.status(404).json({ message: "Book not found!" });
     }
@@ -74,12 +78,14 @@ exports.deleteBook = async (req, res) => {
 exports.editBook = async (req, res) => {
   const { id } = req.params;
   const newBookData = req.body;
+  const requestedBook = await BookModel.findById(id);
+  if (!requestedBook) {
+    return res.status(404).json({ message: "book not exist" });
+  }
 
   try {
     const updatedBook = await BookModel.updateOne({ _id: id }, newBookData);
-    if (!updatedBook) {
-      return res.status(404).json({ message: "book not exist" });
-    }
+    // console.log(updatedBook);
     return res.status(200).json({ message: "updated book successfully!" });
   } catch (err) {
     return res.status(500).json(err);

@@ -22,6 +22,7 @@ exports.createAuthor = async (req, res) => {
     const newAuthor = await authorInstance.save();
     res.status(200).json({ message: "Author Added Successfully" });
   } catch (err) {
+    // console.log(err);
     return res.status(500).json(err);
   }
 
@@ -55,7 +56,13 @@ exports.getAuthor = async (req, res) => {
 exports.deleteAuthor = async (req, res) => {
   const { id } = req.params;
   try {
-    const deletautho = await AuthorModel.findByIdAndDelete(id).select(" -__v");
+    const deletedAuthor = await AuthorModel.findByIdAndDelete(id).select(
+      " -__v"
+    );
+    if (!deletedAuthor) {
+      return res.status(400).json({ message: "Author doesnt exist" });
+    }
+
     return res.status(200).json({ message: "Author Deleted Successfully" });
   } catch (err) {
     return res.status(500).json(err);
@@ -66,13 +73,15 @@ exports.updateAuthor = async (req, res) => {
   const updatedAuthor = req.body;
 
   try {
+    const requestedAuthor = await AuthorModel.findById(id);
+    if (!requestedAuthor) {
+      return res.status(400).json({ message: "Author not updated !" });
+    }
     const updateAuthor = await AuthorModel.updateOne(
       { _id: id },
       updatedAuthor
     );
-    if (!updateAuthor) {
-      return res.status(400).json({ message: "Author not updated !" });
-    }
+    // console.log(updateAuthor);
     return res.status(200).json({ message: "Author updateded Successfully" });
   } catch (err) {
     return res.status(500).json(err);
