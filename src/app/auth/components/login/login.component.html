@@ -3,20 +3,20 @@
     <h5 class="card-title text-center">Login</h5>
     <form class="form-signin" [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <div class="form-label-group">
-        <label for="username">username</label>
+        <label for="username">Email</label>
         <input
-          type="text" name="username" id="username" [formControl]="username" class="form-control shadow p-3 mb-5 bg-body rounded"placeholder="Username">
+          type="email" name="email" id="email" [formControl]="email" class="form-control shadow p-3 mb-5 bg-body rounded"placeholder="Email">
     
-        <div [hidden]="username.valid || username.untouched">
+        <div [hidden]="email.valid || email.untouched">
           <div>
-            The following problems have been found with the username:
+            The following problems have been found with the email:
           </div>
     
-          <div [hidden]="!username.hasError('minlength')">
-            Username can not be shorter than 3 characters.
+          <div [hidden]="!email.hasError('minlength')">
+            email can not be shorter than 3 characters.
           </div>
-          <div [hidden]="!username.hasError('required')">
-            Username is required.
+          <div [hidden]="!email.hasError('required')">
+            email is required.
           </div>
         </div>
       </div>

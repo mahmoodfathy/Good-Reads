@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  Validators, FormBuilder, FormControl ,FormGroup} from '@angular/forms';
-import {CustomValidationService} from '../services/custom-validation.service';
+import {CustomValidationService} from '../../services/custom-validation.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,7 +16,7 @@ export class RegisterComponent {
     password: this.password
   })
     
-  constructor(private builder:FormBuilder) {}
+  constructor(private builder:FormBuilder,private authServices:CustomValidationService) {}
   
    ngOnInit(){
 
@@ -28,6 +28,7 @@ export class RegisterComponent {
 
    }
    
+   
   onSubmit(){
     if (this.userForm.invalid) {
     
@@ -35,6 +36,18 @@ export class RegisterComponent {
       console.log(this.userForm.status);
       return;
   }
+    // const succ={
+    //     //  next:(x:any)=>{
+    //     //    this.alertService.success("welcom")
+    //     //  },error:(err:any)=>{
+    //     //    this.alertService.danger('unble to register')
+    //     //  }
+    //     console.log("succccc")
+         
+    // }
+    this.authServices.getdata();
+    this.authServices.register(this.userForm.value).subscribe(
+    );
     console.log(this.userForm.value);
   }
 
