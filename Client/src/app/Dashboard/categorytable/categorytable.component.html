@@ -1,0 +1,102 @@
+<form>
+  <div class="form-group form-inline">
+    Full text search:
+    <input class="form-control ml-2" type="text" [formControl]="filter" />
+  </div>
+
+  <button class="btn btn-primary add" (click)="handleNewRender(content)">
+    Add Category
+  </button>
+</form>
+<form action="">
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" *ngIf="newMode" id="modal-basic-title">
+        Add Category
+      </h4>
+      <h4 class="modal-title" *ngIf="editMode" id="modal-basic-title">
+        Edit Category
+      </h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="CategoryName">Category Name</label>
+          <div class="input-group">
+            <input
+              id="CategoryName"
+              class="form-control"
+              placeholder="Please Enter Category Name"
+              [formControl]="categoryName"
+            />
+            <div class="input-group-append"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="newMode" class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="recieve()"
+        [disabled]="!categoryName.valid"
+      >
+        Save
+      </button>
+    </div>
+    <div *ngIf="editMode" class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        [disabled]="!categoryName.valid"
+        (click)="handleEdit($event)"
+      >
+        Edit
+      </button>
+    </div>
+  </ng-template>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Category</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of categories; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <!-- <th>{{ category._id }}</th> -->
+      <td>
+        <ngb-highlight
+          [result]="category.category"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td>
+        <button
+          [id]="category._id"
+          class="btn btn-primary"
+          (click)="handleEditRender($event, content)"
+        >
+          Edit
+        </button>
+        <button
+          [id]="category._id"
+          (click)="handleDelete($event)"
+          class="btn btn-danger delete"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

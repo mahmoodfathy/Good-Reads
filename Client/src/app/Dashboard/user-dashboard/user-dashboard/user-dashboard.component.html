@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="side-menu text-center">
+        <button class="btn btn-primary" (click)="booksFilter('all')">All</button>
+        <button class="btn btn-primary" (click)="booksFilter('read')">Read</button>
+        <button class="btn btn-primary" (click)="booksFilter('currently reading')">Currently Reading</button>
+        <button class="btn btn-primary" (click)="booksFilter('want to read')">Want to read</button>
+    </div>
+    
+    <app-books-table [booksArr]="filteredArray" (updateList)="onUpdateList($event)"></app-books-table>
+</div>

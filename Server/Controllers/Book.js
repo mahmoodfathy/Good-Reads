@@ -1,17 +1,19 @@
-const { updateMany } = require("../Models/Book");
+// const { updateMany } = require("../Models/Book");
 const BookModel = require("../Models/Book");
+const mongoose = require("mongoose");
 
 /* Add Book To DB */
 exports.addBooks = async (req, res) => {
-  if(!req.user.isAdmin)
-    return res.status(401).send({error: "Unauthorized action"});
-  const { name, category, author, description, bookImage } = req.body;
+  if (!req.user.isAdmin)
+    return res.status(401).send({ error: "Unauthorized action" });
+  const { name, category, author, description, cover } = req.body;
+
   const book = new BookModel({
     name,
     category,
     author,
     description,
-    bookImage,
+    cover,
   });
   try {
     const newBook = await book.save();
@@ -59,8 +61,8 @@ exports.getOneBook = async (req, res) => {
 
 /* Delete one Book From DB */
 exports.deleteBook = async (req, res) => {
-  if(!req.user.isAdmin)
-    return res.status(401).send({error: "Unauthorized action"});
+  if (!req.user.isAdmin)
+    return res.status(401).send({ error: "Unauthorized action" });
   const bookId = req.params.id;
   try {
     const deletedState = await BookModel.findByIdAndDelete(bookId);
@@ -76,8 +78,8 @@ exports.deleteBook = async (req, res) => {
 
 /* Update one Book From DB */
 exports.editBook = async (req, res) => {
-  if(!req.user.isAdmin)
-    return res.status(401).send({error: "Unauthorized action"});
+  if (!req.user.isAdmin)
+    return res.status(401).send({ error: "Unauthorized action" });
   const { id } = req.params;
   const newBookData = req.body;
 
@@ -88,6 +90,22 @@ exports.editBook = async (req, res) => {
     }
     return res.status(200).json({ message: "updated book successfully!" });
   } catch (err) {
+    console.log(err);
     return res.status(500).json(err);
+  }
+};
+exports.getCategoryBooks = async (req, res) => {
+  let { id } = req.params;
+
+  try {
+    const books = await BookModel.find({ category: id }).populate("author");
+    if (books.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No Books Found in this category" });
+    }
+    return res.status(200).json(books);
+  } catch (err) {
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
