@@ -1,11 +1,12 @@
 const express = require("express");
 const bookRouter = express.Router();
 const booksController = require("../Controllers/Book");
+const userAuth = require("../MiddleWares/User");
 
 /** APIs **/
 
 /* Add Book To DB */
-bookRouter.post("/", booksController.addBooks);
+bookRouter.post("/", userAuth.auth, booksController.addBooks);
 
 /* List All Books From DB */
 bookRouter.get("/", booksController.getAllBooks);
@@ -14,10 +15,10 @@ bookRouter.get("/", booksController.getAllBooks);
 bookRouter.get("/:id", booksController.getOneBook);
 
 /* Delete one Book From DB */
-bookRouter.delete("/:id", booksController.deleteBook);
+bookRouter.delete("/:id", userAuth.auth, booksController.deleteBook);
 
 /* Update one Book From DB */
-bookRouter.patch("/:id", booksController.editBook);
+bookRouter.patch("/:id", userAuth.auth, booksController.editBook);
 
 bookRouter.get("/category/:id", booksController.getCategoryBooks);
 

@@ -4,7 +4,10 @@ const mongoose = require("mongoose");
 
 /* Add Book To DB */
 exports.addBooks = async (req, res) => {
+  if (!req.user.isAdmin)
+    return res.status(401).send({ error: "Unauthorized action" });
   const { name, category, author, description, cover } = req.body;
+
   const book = new BookModel({
     name,
     category,
@@ -58,6 +61,8 @@ exports.getOneBook = async (req, res) => {
 
 /* Delete one Book From DB */
 exports.deleteBook = async (req, res) => {
+  if (!req.user.isAdmin)
+    return res.status(401).send({ error: "Unauthorized action" });
   const bookId = req.params.id;
   try {
     const deletedState = await BookModel.findByIdAndDelete(bookId);
@@ -73,6 +78,8 @@ exports.deleteBook = async (req, res) => {
 
 /* Update one Book From DB */
 exports.editBook = async (req, res) => {
+  if (!req.user.isAdmin)
+    return res.status(401).send({ error: "Unauthorized action" });
   const { id } = req.params;
   const newBookData = req.body;
 
