@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserDashboardComponent } from './Dashboard/user-dashboard/user-dashboard/user-dashboard.component';
+import { CategoryComponent } from './Dashboard/category/category.component';
+import { BookCardComponent } from './Shared/book-card/book-card.component';
+import { CategoriesComponent } from './Shared/categories/categories.component';
 
 const routes: Routes = [
-  {path:"home",component:UserDashboardComponent}
+  {path:"home",component:UserDashboardComponent},
+  { path: 'categories/:id', component: BookCardComponent },
+  { path: 'home/admin', component: CategoryComponent },
+  { path: 'categories', component: CategoriesComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

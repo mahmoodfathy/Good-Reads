@@ -12,7 +12,7 @@
     <tbody>
         <tr *ngFor="let bookObj of booksArr; index as i">
             <td>
-                {{ bookObj.book.name || bookObj.book.bookname }}
+                {{ bookObj.book.name }}
             </td>
             <td>{{ bookObj.book.author || "unknown"  }}</td>
             <td>{{ bookObj.book.avgRating || 0 }}</td>
