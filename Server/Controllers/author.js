@@ -1,6 +1,8 @@
 const AuthorModel = require("../Models/author");
 
 exports.createAuthor = async (req, res) => {
+  if(!req.user.isAdmin)
+    return res.status(401).send({error: "Unauthorized action"});
   const {
     firstname,
     lastname,
@@ -39,6 +41,8 @@ exports.getAllAuthors = async (request, response) => {
   }
 };
 exports.getAuthor = async (req, res) => {
+  // if(!req.user.isAdmin)
+  //   return res.status(401).send({error: "Unauthorized action"});
   const { id } = req.params;
   try {
     const oneAuthor = await AuthorModel.findById(id)
@@ -53,6 +57,8 @@ exports.getAuthor = async (req, res) => {
   }
 };
 exports.deleteAuthor = async (req, res) => {
+  if(!req.user.isAdmin)
+    return res.status(401).send({error: "Unauthorized action"});
   const { id } = req.params;
   try {
     const deletautho = await AuthorModel.findByIdAndDelete(id).select(" -__v");
@@ -62,6 +68,8 @@ exports.deleteAuthor = async (req, res) => {
   }
 };
 exports.updateAuthor = async (req, res) => {
+  if(!req.user.isAdmin)
+    return res.status(401).send({error: "Unauthorized action"});
   const { id } = req.params;
   const updatedAuthor = req.body;
 

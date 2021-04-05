@@ -14,7 +14,6 @@ import { AuthorDetailsComponent } from './components/authors/author-details/auth
 import { ListAllAuthorsComponent } from './components/authors/list-all-authors/list-all-authors.component';
 import { ListAllBooksComponent } from './components/book/list-all-books/list-all-books.component';
 import { ListAllCategoriesComponent } from './components/category/list-all-categories/list-all-categories.component';
-import { CategoryDetailsComponent } from './components/category/category-details/category-details.component';
 import { BookReviewsComponent } from './components/book/book-details/book-reviews/book-reviews.component';
 import { AuthorBooksComponent } from './components/authors/author-details/author-books/author-books.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -25,16 +24,21 @@ import {AuthorsService} from "../Services/authors.service";
 import {CategoriesService} from "../Services/categories.service";
 import {AuthorComponent } from './components/authors/author/author.component';
 import { CategoryComponent } from './components/category/category/category.component';
+import {BookCardComponent} from './components/category/book-card/book-card.component';
+import {AppRoutingModule} from '../app-routing.module'
 
 
 
 @NgModule({
-  declarations: [NavBarComponent, HomeComponent, MainDashboardComponent, SearchComponent, PopularBooksComponent, PopularAuthorsComponent, PopularCategoriesComponent, BookDetailsComponent, AuthorDetailsComponent, ListAllAuthorsComponent, ListAllBooksComponent, ListAllCategoriesComponent, CategoryDetailsComponent, BookReviewsComponent, AuthorBooksComponent, FooterComponent, BooksComponent, AuthorComponent, CategoryComponent],
+  declarations: [NavBarComponent, HomeComponent, 
+    MainDashboardComponent, SearchComponent, 
+    PopularBooksComponent, PopularAuthorsComponent, PopularCategoriesComponent, BookDetailsComponent, AuthorDetailsComponent, ListAllAuthorsComponent, ListAllBooksComponent, ListAllCategoriesComponent, BookCardComponent, BookReviewsComponent, AuthorBooksComponent, FooterComponent, BooksComponent, AuthorComponent, CategoryComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
     MainDashboardRoutingModule,
+    AppRoutingModule
 
   ],
   providers:[BooksService,AuthorsService,CategoriesService],

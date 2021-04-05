@@ -6,7 +6,7 @@ import { BookDetailsComponent } from './components/book/book-details/book-detail
 import { ListAllBooksComponent } from './components/book/list-all-books/list-all-books.component';
 import { ListAllCategoriesComponent } from './components/category/list-all-categories/list-all-categories.component';
 import { ListAllAuthorsComponent} from './components/authors/list-all-authors/list-all-authors.component';
-import { CategoryDetailsComponent } from './components/category/category-details/category-details.component';
+import { BookCardComponent } from './components/category/book-card/book-card.component';
 import { AuthorDetailsComponent} from './components/authors/author-details/author-details.component';
 import {AuthModule} from "../Auth/auth/auth.module"
 import { SignupComponent } from '../Auth/signup/signup.component';
@@ -20,7 +20,7 @@ const navBarRoutes: Routes = [
   {path: 'category',component: ListAllCategoriesComponent },
   {path: 'book',component: ListAllBooksComponent},
   {path: 'book/:id',component: BookDetailsComponent},
-  {path: 'category/:id',component: CategoryDetailsComponent},
+  {path: 'category/:id',component: BookCardComponent},
   {path: 'author/:id',component:AuthorDetailsComponent},
   // {path:'signin',component:SigninComponent},
   // {path:'signup',component:SignupComponent}

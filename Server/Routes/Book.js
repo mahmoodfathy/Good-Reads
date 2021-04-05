@@ -1,21 +1,16 @@
-const express = require('express');
+const express = require("express");
 const bookRouter = express.Router();
-const booksController=require('../Controllers/Book');
+const booksController = require("../Controllers/Book");
+const userAuth = require("../MiddleWares/User");
 
 /** APIs **/
 
 
-/* Add Book To DB  Need Admin Authentication */
-bookRouter.post('/', booksController.addBooks);
-
-/* Delete one Book From DB Need Admin Authentication */
-bookRouter.delete('/:id',booksController.deleteBook);
-
-/* Update one Book From DB Need Admin Authentication */
-bookRouter.patch('/:id',booksController.editBook);
+/* Add Book To DB */
+bookRouter.post("/", userAuth.auth, booksController.addBooks);
 
 /* List All Books From DB */
-bookRouter.get('/', booksController.getAllBooks);
+bookRouter.get("/", booksController.getAllBooks);
 
 /* Get one Book From DB */
 bookRouter.get('/:id',booksController.getOneBook);
@@ -23,31 +18,12 @@ bookRouter.get('/:id',booksController.getOneBook);
 /* List Most Popular Books From DB */
 bookRouter.get('/top', booksController.getMostPopular);
 
+/* Delete one Book From DB */
+bookRouter.delete("/:id", userAuth.auth, booksController.deleteBook);
 
+/* Update one Book From DB */
+bookRouter.patch("/:id", userAuth.auth, booksController.editBook);
 
+bookRouter.get("/category/:id", booksController.getCategoryBooks);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports=bookRouter;
+module.exports = bookRouter;

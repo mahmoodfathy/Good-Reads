@@ -1,6 +1,8 @@
 const Category = require("../Models/Categories");
 
 exports.addCategory = async (req, res, next) => {
+  if (!req.user.isAdmin)
+    return res.status(401).send({ error: "Unauthorized action" });
   const { category } = req.body;
 
   if (!category) {
@@ -28,8 +30,12 @@ exports.getCategories = async (req, res, next) => {
   }
 };
 exports.updateCategroy = async (req, res, next) => {
+  if (!req.user.isAdmin)
+    return res.status(401).send({ error: "Unauthorized action" });
   const { id } = req.params;
   const { categoryName } = req.body;
+  if (!categoryName)
+    return res.status(400).send({ error: "please provide valid input" });
   const category = await Category.findById(id);
   if (!category) {
     return res.status(400).json({ message: "Category doesn't exist !" });
@@ -44,6 +50,8 @@ exports.updateCategroy = async (req, res, next) => {
 };
 
 exports.deleteCategroy = async (req, res, next) => {
+  if (!req.user.isAdmin)
+    return res.status(401).send({ error: "Unauthorized action" });
   const { id } = req.params;
   try {
     await Category.findOneAndDelete({ _id: id });
