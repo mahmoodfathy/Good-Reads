@@ -25,7 +25,11 @@
           </div>
         </div>
       </div>
+      
       <hr class="my-4">
+      <div class="badge bg-danger" [hidden]="!LoginErr">
+        invalid data
+      </div>
       <button [disabled]="!userForm.valid || isLoading" type="submit" class="btn btn-lg btn-primary btn-block text-uppercase">{{isLoading?"Loading":"Login"}}</button>
       <a class="d-block text-center mt-2 small" [routerLink]="['/','register']">Sign up</a>
      

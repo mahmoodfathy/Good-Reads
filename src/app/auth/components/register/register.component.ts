@@ -17,6 +17,7 @@ export class RegisterComponent {
     password: this.password
   })
     isLoading:boolean=false;
+    LoginErr:boolean=false;
   constructor(private builder:FormBuilder,private authServices:CustomValidationService,private _router:Router) {}
   
    ngOnInit(){}
@@ -25,12 +26,15 @@ export class RegisterComponent {
     this.authServices.register(this.userForm.value).subscribe(
       res=>{ console.log(res)
         this.isLoading=false;
+        this.LoginErr=false;
         this._router.navigate(['/'])
         
     },
     err=>{
+      this.LoginErr=true;
+      this.isLoading=false;
       console.log(err)}
-
+      
   );}
 }
 
