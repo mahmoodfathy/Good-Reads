@@ -1,22 +1,21 @@
 export interface Book{
-  _id:number;
-  name: String,
-  cover:String,
-  description: String,
-  details: [{
+  _id?:String;
+  name?: String,
+  cover?:String,
+  description?: String,
+  details?: [{
      Paperback: String ,
      PublishedDate: String,
      OriginalTitle: String,
      EditionLanguage: String,
      Characters: String }
   ],
-  totalRatingCount: number,
-  totalRatingValue: number,
-  totalReviewsCount: number,
-  addedDate: Date,
-  rating: number,
-  review: String,
-  author: {_id:number},
-  category: {_id:number}
-
+  totalRatingCount?: number,
+  totalRatingValue?: number,
+  totalReviewsCount?: number,
+  addedDate?: Date,
+  rating?: number,
+  review?: String,
+  author?: {_id?:String,firstname?:String,lastname?:String},
+  category?: {_id?:String,category?:String}
 }

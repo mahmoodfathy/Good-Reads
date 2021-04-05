@@ -11,7 +11,7 @@ import {Author} from "../../../../models/author";
 })
 export class AuthorDetailsComponent implements OnInit ,OnDestroy{
   constructor(private getOneAuthorService:AuthorsService,private authorActivatedRoute:ActivatedRoute) { }
-  AuthorsDetails:Author ={ _id:5,firstname:'dc',lastname:'cc',imageURL:'',dob:new Date(),shortDescription:'',book:[{_id:0}]};
+  AuthorsDetails:Author;
   subscriber:any;
   ngOnInit(): void {
     this.subscriber=this.getOneAuthorService.getAuthorById(this.authorActivatedRoute.snapshot.params.id)

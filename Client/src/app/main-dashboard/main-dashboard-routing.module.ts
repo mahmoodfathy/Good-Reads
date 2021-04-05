@@ -8,7 +8,9 @@ import { ListAllCategoriesComponent } from './components/category/list-all-categ
 import { ListAllAuthorsComponent} from './components/authors/list-all-authors/list-all-authors.component';
 import { CategoryDetailsComponent } from './components/category/category-details/category-details.component';
 import { AuthorDetailsComponent} from './components/authors/author-details/author-details.component';
-
+import {AuthModule} from "../Auth/auth/auth.module"
+import { SignupComponent } from '../Auth/signup/signup.component';
+import { SigninComponent } from '../Auth/signin/signin.component';
 
 
 const navBarRoutes: Routes = [
@@ -17,9 +19,12 @@ const navBarRoutes: Routes = [
   { path: 'author', component:  ListAllAuthorsComponent},
   {path: 'category',component: ListAllCategoriesComponent },
   {path: 'book',component: ListAllBooksComponent},
-  {path: 'books/33',component: BookDetailsComponent},
-  {path: 'category/878',component: CategoryDetailsComponent},
-  {path: 'authors/432',component:AuthorDetailsComponent}
+  {path: 'book/:id',component: BookDetailsComponent},
+  {path: 'category/:id',component: CategoryDetailsComponent},
+  {path: 'author/:id',component:AuthorDetailsComponent},
+  // {path:'signin',component:SigninComponent},
+  // {path:'signup',component:SignupComponent}
+
 
 ];
 

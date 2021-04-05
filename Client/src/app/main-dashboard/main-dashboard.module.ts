@@ -6,7 +6,6 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HomeComponent } from './components/home/home.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { SearchComponent } from './components/search/search.component';
-import {AuthModule} from '../Auth/auth/auth.module';
 import { PopularBooksComponent } from './components/book/popular-books/popular-books.component';
 import { PopularAuthorsComponent } from './components/authors/popular-authors/popular-authors.component';
 import { PopularCategoriesComponent } from './components/category/popular-categories/popular-categories.component';
@@ -21,23 +20,25 @@ import { AuthorBooksComponent } from './components/authors/author-details/author
 import { FooterComponent } from './components/footer/footer.component';
 import {BooksService} from "../Services/books.service";
 import {HttpClientModule} from "@angular/common/http";
-import { BooksComponent } from './components/book/books/books.component';
+import {BooksComponent } from './components/book/books/books.component';
 import {AuthorsService} from "../Services/authors.service";
 import {CategoriesService} from "../Services/categories.service";
-import { AuthorComponent } from './components/authors/author/author.component';
+import {AuthorComponent } from './components/authors/author/author.component';
+import { CategoryComponent } from './components/category/category/category.component';
 
 
 
 @NgModule({
-  declarations: [NavBarComponent, HomeComponent, MainDashboardComponent, SearchComponent, PopularBooksComponent, PopularAuthorsComponent, PopularCategoriesComponent, BookDetailsComponent, AuthorDetailsComponent, ListAllAuthorsComponent, ListAllBooksComponent, ListAllCategoriesComponent, CategoryDetailsComponent, BookReviewsComponent, AuthorBooksComponent, FooterComponent, BooksComponent, AuthorComponent],
+  declarations: [NavBarComponent, HomeComponent, MainDashboardComponent, SearchComponent, PopularBooksComponent, PopularAuthorsComponent, PopularCategoriesComponent, BookDetailsComponent, AuthorDetailsComponent, ListAllAuthorsComponent, ListAllBooksComponent, ListAllCategoriesComponent, CategoryDetailsComponent, BookReviewsComponent, AuthorBooksComponent, FooterComponent, BooksComponent, AuthorComponent, CategoryComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
     MainDashboardRoutingModule,
-    AuthModule
+
   ],
   providers:[BooksService,AuthorsService,CategoriesService],
   exports:[MainDashboardComponent]
+ 
 })
 export class MainDashboardModule { }

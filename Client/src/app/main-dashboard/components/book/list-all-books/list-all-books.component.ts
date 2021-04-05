@@ -1,5 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
+import { from } from 'rxjs';
 import {BooksService} from "../../../../Services/books.service";
+import {Book} from '../../../../models/book'
 
 @Component({
   selector: 'app-list-all-books',
@@ -8,7 +10,7 @@ import {BooksService} from "../../../../Services/books.service";
 })
 export class ListAllBooksComponent implements OnInit,OnDestroy {
   constructor(private listBooks:BooksService) { }
-  books:Array<{_id:number,image:String,category:number,author:number}>=[];
+  books:Array<Book>;
   subscriber:any;
   ngOnInit(): void {
     this.subscriber=this.listBooks.getAllBooks()

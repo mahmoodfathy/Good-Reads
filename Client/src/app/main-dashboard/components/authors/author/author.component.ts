@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Author} from '../../../../models/author'
 
 @Component({
   selector: 'app-author',
@@ -7,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class AuthorComponent implements OnInit {
   constructor() { }
-  @Input('authorLogo') author:{_id:number,imageURL:String,firstname:String,lastname:String}={_id:0,imageURL:'',firstname:'',lastname:''};
+  @Input('authorCard') author:Author={_id:0,firstname:'',lastname:'',imageURL:'',shortDescription:'',dob:new Date(),book:[{_id:0}]};
   ngOnInit(): void {
   }
 

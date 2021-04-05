@@ -11,7 +11,7 @@ import {Book} from '../../../../models/book';
 export class BookDetailsComponent implements OnInit ,OnDestroy{
 
   constructor(private getOneBookService:BooksService,private bookActivatedRoute:ActivatedRoute) { }
-  bookDetails:Book={_id:2,name:'',cover:"",review:'',author:{_id:0},category:{_id:0},description:'',rating:0,addedDate:new Date(),totalRatingCount:0,totalRatingValue:0,totalReviewsCount:0,details:[{Characters:'',EditionLanguage:'',OriginalTitle:'',Paperback:'',PublishedDate:''}]};
+  bookDetails:Book;
   subscriber:any;
   ngOnInit(): void {
     this.subscriber=this.getOneBookService.getBookById(this.bookActivatedRoute.snapshot.params.id)

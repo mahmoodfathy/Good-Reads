@@ -11,6 +11,6 @@ export class BooksComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {}
-  @Input('bookLogo') book:{_id:number,image:String,category:number,author:number}={_id:0,image:"",category:0,author:0};
+  @Input('bookCard') book:Book;
 
 }
