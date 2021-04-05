@@ -10,6 +10,7 @@ import { UserDashboardModule } from './Dashboard/user-dashboard/user-dashboard.m
 import { SignupComponent } from './Auth/signup/signup.component';
 import { SigninComponent } from './Auth/signin/signin.component';
 import { DashboardModule } from './Dashboard/dashboard/dashboard.module';
+import { BookDetailsModule } from './Dashboard/book-details/book-details.module';
 import { BookCardComponent } from './Shared/book-card/book-card.component';
 import { CategoriesComponent } from './Shared/categories/categories.component';
 
@@ -22,12 +23,13 @@ import { CategoriesComponent } from './Shared/categories/categories.component';
     CategoriesComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     HttpClientModule,
     NgbModule,
     UserDashboardModule,
-    DashboardModule
+    DashboardModule,
+    BookDetailsModule
   ],
   providers: [
   ],

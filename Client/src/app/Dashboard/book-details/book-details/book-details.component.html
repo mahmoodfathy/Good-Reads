@@ -1,0 +1,23 @@
+<div class="container d-flex">
+  <div class="img-container">
+    <img src="https://specials-images.forbesimg.com/imageserve/5f85be4ed0acaafe77436710/960x0.jpg?fit=scale" class="img-fluid img-thumbnail" alt="book image">
+  </div>
+
+  <div class="book-info">
+    <h3>{{bookDetails.name}}</h3>
+    <p>By: {{bookDetails.author ? bookDetails.author : "unkown"}}</p>
+    <p>{{bookDetails.category ? bookDetails.category.category : "not listed Category"}}</p>
+    <p>{{bookDetails.totalRatingValue}} / 5 - {{bookDetails.totalRatingCount}} Rating</p>
+  </div>
+</div>
+
+<div class="container review-container">
+  <div>
+    <form [formGroup]="myForm" class="review-form"(ngSubmit)="addReview()">
+      <input class="text" type="text" placeholder="Type a review" formControlName="review" [(ngModel)]="review"/>
+      <input class="btn btn-primary" type="submit" [value]="isLoading ? 'loading...' : 'Add Review'" [disabled]="myForm.invalid || isLoading">
+      <p class="text-danger" *ngIf="myForm.invalid">Review must be atleast 10 charachters</p>
+    </form>
+  </div>
+  <app-reviews [reviews]="reviews"></app-reviews>
+</div>
