@@ -44,11 +44,12 @@
                         <option value="currently reading">currently reading</option>
                     </select>
                 </div>
+                <br>
                 <ng-template #elseBlock>Loading....</ng-template>
             </div>
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="handleShelfUpdate()">Save</button>
+        <button type="button" class="btn btn-outline-dark" (click)="handleShelfUpdate()" [disabled]="isLoading">Save</button>
     </div>
 </ng-template>
