@@ -17,9 +17,9 @@ const navBarRoutes: Routes = [
   { path: 'author', component:  ListAllAuthorsComponent},
   {path: 'category',component: ListAllCategoriesComponent },
   {path: 'book',component: ListAllBooksComponent},
-  {path: 'books/:33',component: BookDetailsComponent},
-  {path: 'category/:878',component: CategoryDetailsComponent},
-  {path: 'authors/:432',component:AuthorDetailsComponent}
+  {path: 'books/33',component: BookDetailsComponent},
+  {path: 'category/878',component: CategoryDetailsComponent},
+  {path: 'authors/432',component:AuthorDetailsComponent}
 
 ];
 

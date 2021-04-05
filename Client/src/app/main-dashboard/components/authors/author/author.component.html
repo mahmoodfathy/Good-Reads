@@ -1,5 +1,5 @@
 <p>author works!</p>
 <div class="container">
-  <a [routerLink]="author._id.toString()"> <img src="{{author.image}}" alt=""> </a>
-  <a routerLinkActive="text-danger" [routerLink]="author._id.toString()">{{author.firstName}} {{author.lastName}}</a>
+  <a [routerLink]="author._id.toString()"><img src="{{author.imageURL}}" alt="hi"> </a>
+  <a routerLinkActive="text-danger" [routerLink]="author._id.toString()">{{author.firstname}} {{author.lastname}}</a>
 </div>

@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-4">
-      <p *ngFor="let category of Categories">{{category}}</p>
+      <a  *ngFor="let category of Categories" [routerLink]="category._id.toString()">{{category.category}}</a>
     </div>
   </div>
 </div>

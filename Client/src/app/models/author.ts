@@ -1,8 +1,9 @@
-export interface Authors{
+export interface Author{
   _id:number,
   firstname: String,
   lastname: String,
-  image: String,
-  dob: String,
+  imageURL: String,
+  dob: Date,
   shortDescription: String,
+  book:[{_id:number}]
 }

@@ -8,7 +8,7 @@ import {BooksService} from "../../../../Services/books.service";
 })
 export class ListAllBooksComponent implements OnInit,OnDestroy {
   constructor(private listBooks:BooksService) { }
-  books:Array<{_id:number,image:String,category:String,author:String}>=[];
+  books:Array<{_id:number,image:String,category:number,author:number}>=[];
   subscriber:any;
   ngOnInit(): void {
     this.subscriber=this.listBooks.getAllBooks()
@@ -21,7 +21,6 @@ export class ListAllBooksComponent implements OnInit,OnDestroy {
       }
     );
   }
-
   ngOnDestroy(): void {
     this.subscriber.unsubscribe();
   }

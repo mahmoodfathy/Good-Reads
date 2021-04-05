@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthorsService} from "../../../../Services/authors.service";
 import {ActivatedRoute} from "@angular/router";
-import {Authors} from "../../../../models/authors";
+import {Author} from "../../../../models/author";
 
 
 @Component({
@@ -11,7 +11,7 @@ import {Authors} from "../../../../models/authors";
 })
 export class AuthorDetailsComponent implements OnInit ,OnDestroy{
   constructor(private getOneAuthorService:AuthorsService,private authorActivatedRoute:ActivatedRoute) { }
-  AuthorsDetails:Authors ={ _id:5,firstname:'dc',lastname:'cc',image:'',dob:'1-3-2009',shortDescription:'dkmvdo'};
+  AuthorsDetails:Author ={ _id:5,firstname:'dc',lastname:'cc',imageURL:'',dob:new Date(),shortDescription:'',book:[{_id:0}]};
   subscriber:any;
   ngOnInit(): void {
     this.subscriber=this.getOneAuthorService.getAuthorById(this.authorActivatedRoute.snapshot.params.id)
@@ -22,7 +22,6 @@ export class AuthorDetailsComponent implements OnInit ,OnDestroy{
         }
       )
   }
-
   ngOnDestroy(): void {
     this.subscriber.unsubscribe();
   }
