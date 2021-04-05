@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="card-body">
     <h5 class="card-title text-center">Login</h5>
     <form class="form-signin" [formGroup]="userForm" (ngSubmit)="onSubmit()">
@@ -8,14 +8,10 @@
           type="email" name="email" id="email" [formControl]="email" class="form-control shadow p-3 mb-5 bg-body rounded"placeholder="Email">
     
         <div [hidden]="email.valid || email.untouched">
-          <div>
-            The following problems have been found with the email:
+          <div class="badge bg-danger" [hidden]="email.valid">
+            email is not vaild
           </div>
-    
-          <div [hidden]="!email.hasError('minlength')">
-            email can not be shorter than 3 characters.
-          </div>
-          <div [hidden]="!email.hasError('required')">
+          <div class="badge bg-danger" [hidden]="!email.hasError('required')">
             email is required.
           </div>
         </div>
@@ -23,20 +19,15 @@
       <div class="form-label-group">
         <label for="inputPassword">Password</label>
         <input type="password" name="password" [formControl]="password" id="password" class="form-control shadow p-3 mb-5 bg-body rounded" placeholder="Password">
-        <div [hidden]="password.valid || password.untouched">
-          <div>
-            The following problems have been found with the password:
-          </div>
+        <div class="badge bg-danger"[hidden]="password.valid || password.untouched">
           <div [hidden]="!password.hasError('minlength')">
             password can not be shorter than 8 characters.
           </div>
         </div>
       </div>
       <hr class="my-4">
-      <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase">Login</button>
-      <a class="d-block text-center mt-2 small" href="#">Sign up</a>
+      <button [disabled]="!userForm.valid || isLoading" type="submit" class="btn btn-lg btn-primary btn-block text-uppercase">{{isLoading?"Loading":"Login"}}</button>
+      <a class="d-block text-center mt-2 small" [routerLink]="['/','register']">Sign up</a>
      
-      <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fa fa-google"></i> Sign up with Google</button>
-      <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i  class="fa fa-facebook"></i> Sign up with Facebook</button>
-    </form>
+   </form>
   </div>

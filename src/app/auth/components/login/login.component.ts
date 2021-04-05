@@ -11,7 +11,7 @@ import {CustomValidationService} from '../../services/custom-validation.service'
 export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]);
   password = new FormControl('', [Validators.required,Validators.minLength(8)]);
-
+  isLoading:boolean=false;
   userForm: FormGroup = this.builder.group({
     email: this.email,
     password: this.password
@@ -20,37 +20,15 @@ export class LoginComponent implements OnInit {
   constructor(private builder: FormBuilder,private authServices:CustomValidationService,private _router:Router) { }
    ngOnInit(){
    }
-   sendDataLogin(){
-
-   }
-   getData(){
-  
-   }
   onSubmit(){
-    if (this.userForm.invalid) {
-    
-      console.log("invalid");
-      console.log(this.userForm.status);
-      return;
-  }
-    // const succ={
-    //     //  next:(x:any)=>{
-    //     //    this.alertService.success("welcom")
-    //     //  },error:(err:any)=>{
-    //     //    this.alertService.danger('unble to register')
-    //     //  }
-    //     console.log("succccc")
-         
-    // }
-    this.authServices.getdata();
+    this.isLoading=true;
     this.authServices.login(this.userForm.value).subscribe(
       res=>{ console.log(res)
+        this.isLoading=false;
           this._router.navigate(['/'])
       },
       err=>console.log
 
-    );
-    console.log(this.userForm.value);
-  }
+    )}
 
 }

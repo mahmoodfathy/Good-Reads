@@ -11,49 +11,62 @@ export class CustomValidationService {
   readonly baseURL: string = "http://localhost:5000/user"
   //"mongodb+srv://esraa:123456789Esraa@cluster0.0attd.mongodb.net/Good-Reads?retryWrites=true&w=majority";
   isLoggedIn:boolean=false;
-
   currentUser:IUser={
        username:'',
-       email:'',
-       password:''
+       email:''
+       
   };
   currentUserlogin:IUserlogin={
-     email:'',
-     password:''
+     email:''
+     
 };
   constructor(private http:HttpClient){}
   
-  register(model:any):Observable<IUser>{
+  register(model:any){
     
        return this.http.post(this.baseURL+'/signup',model).pipe(
             map((response:any)=>{
                 this.isLoggedIn=true;
                 this.currentUser.username=response.username;
                 this.currentUser.email=response.email;
-                this.currentUser.password=response.password;
                 localStorage.setItem('token',response.token)
-                return this.currentUser;
+              //console.log((JSON.parse(atob((response.token).split('.')[1]))).exp)
             })
        );
       
   }
-  login(model:any):Observable<IUserlogin>{
+  login(model:any){
     
      return this.http.post(this.baseURL+'/login',model).pipe(
           map((response:any)=>{
               this.isLoggedIn=true;
               this.currentUserlogin.email=response.email;
-              this.currentUserlogin.password=response.password;
               localStorage.setItem('token',response.token)
-              return this.currentUserlogin;
+            
           })
      );
     
 }
-  getdata(){
-     console.log(this.http.get("http://localhost:5000/user/"));
-  }
+//   getdata(){
+//      console.log(this.http.get("http://localhost:5000/user/"));
+//   }
+private tokenExpired(token: string) {
+     const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+     return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+   }
+
+   isAuth(){
+       let token=localStorage.getItem('token') as string;
+       
+       if(!token||this.tokenExpired(token)){
+            this.isLoggedIn=false;
+            return this.isLoggedIn;
+       }
+       this.isLoggedIn=true
+        return this.isLoggedIn;
+   }
   logout(){
-       this.isLoggedIn=false;
+     localStorage.removeItem('token');
+     this.isLoggedIn=false;
   }
 }

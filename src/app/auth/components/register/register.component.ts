@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  Validators, FormBuilder, FormControl ,FormGroup} from '@angular/forms';
+import { Router } from '@angular/router';
 import {CustomValidationService} from '../../services/custom-validation.service';
 @Component({
   selector: 'app-register',
@@ -15,43 +16,21 @@ export class RegisterComponent {
     email:this.email,
     password: this.password
   })
-    
-  constructor(private builder:FormBuilder,private authServices:CustomValidationService) {}
+    isLoading:boolean=false;
+  constructor(private builder:FormBuilder,private authServices:CustomValidationService,private _router:Router) {}
   
-   ngOnInit(){
-
-   }
-   sendDataRegistration(){
-
-   }
-   getData(){
-
-   }
-   
-   
+   ngOnInit(){}
   onSubmit(){
-    if (this.userForm.invalid) {
-    
-      console.log("invalid");
-      console.log(this.userForm.status);
-      return;
-  }
-    // const succ={
-    //     //  next:(x:any)=>{
-    //     //    this.alertService.success("welcom")
-    //     //  },error:(err:any)=>{
-    //     //    this.alertService.danger('unble to register')
-    //     //  }
-    //     console.log("succccc")
-         
-    // }
-    this.authServices.getdata();
+    this.isLoading=true;
     this.authServices.register(this.userForm.value).subscribe(
-    );
-    console.log(this.userForm.value);
-  }
+      res=>{ console.log(res)
+        this.isLoading=false;
+        this._router.navigate(['/'])
+        
+    },
+    err=>{
+      console.log(err)}
 
-
-
+  );}
 }
 
