@@ -22,10 +22,10 @@ exports.addBooks = async (req, res) => {
 /* List All Books From DB Need Pagination */
 exports.getAllBooks = async (req, res,next) => {
   try {
-    const {page = 1,limit = 10} = parseInt(req.query);
+    const {page = 1,limit = 1} = parseInt(req.query);
     const startIndex = (page - 1 ) * limit;
     const endIndex = limit * page;
-    const books = await BookModel.find()
+    const books = await BookModel.find({}).populate("author").populate("category")
         .limit(endIndex)
         .skip(startIndex);
     if (!books) {
