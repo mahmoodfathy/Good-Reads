@@ -25,7 +25,7 @@ exports.addBooks = async (req, res) => {
 /* List All Books From DB Need Pagination */
 exports.getAllBooks = async (req, res,next) => {
   try {
-    const {page = 1,limit = 1} = parseInt(req.query);
+    const {page = 1,limit = 10} = parseInt(req.query);
     const startIndex = (page - 1 ) * limit;
     const endIndex = limit * page;
     const books = await BookModel.find({}).populate("author").populate("category")
@@ -96,6 +96,7 @@ exports.editBook = async (req, res) => {
 /* List Most Popular Books From DB  Need Pagination */
 exports.getMostPopular= async (req,res,next)=>{
   try{
+    avgRating=await BookModel.getAvgRating();
     const topBooks = await BookModel.find({ avgRating: { $gt: 3 } })
     if(!topBooks){
       return res.status(404).json({ message: "No Popular books found" });

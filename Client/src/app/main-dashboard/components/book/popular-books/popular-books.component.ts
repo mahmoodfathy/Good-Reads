@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BooksService} from "../../../../Services/books.service";
+import {Book} from '../../../../models/book'
 
 @Component({
   selector: 'app-popular-books',
@@ -9,7 +10,7 @@ import {BooksService} from "../../../../Services/books.service";
 export class PopularBooksComponent implements OnInit {
 
   constructor(private listPopularBooks:BooksService) { }
-  popularBooks:Array<{id:number,image:String,category:String,author:String}>=[];
+  popularBooks:Array<Book>;
   subscriber:any;
   ngOnInit(): void {
     this.subscriber=this.listPopularBooks.getPopularBooks()

@@ -9,7 +9,7 @@ import {Author} from "../../../../models/author";
 export class PopularAuthorsComponent implements OnInit,OnDestroy {
 
   constructor(private listPopularAuthors:AuthorsService) { }
-  popularAuthors:Array<{_id:number,imageURL:String,firstname:String,lastname:String}>=[];
+  popularAuthors:Array<Author>;
   subscriber:any;
   ngOnInit(): void {
     this.subscriber=this.listPopularAuthors.getPopularAuthors()

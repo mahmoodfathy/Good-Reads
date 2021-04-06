@@ -20,8 +20,13 @@ const bookSchema = new mongoose.Schema({
   addedDate: { type: Date, default: Date.now },
   review: { type: String },
   rating: { type: Number, default: 0 },
+  avgRating:{type:Number,default:0},
   author: { type: mongoose.Schema.Types.ObjectId, ref: "Author" },
   category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
 });
+
+bookSchema.statics.getAvgRating=function(){
+  return this.avgRating= this.totalRatingValue/this.totalRatingCount;
+}
 const Book = mongoose.model("Book", bookSchema);
 module.exports = Book;
