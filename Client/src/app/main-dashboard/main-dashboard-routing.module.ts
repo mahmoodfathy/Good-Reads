@@ -8,22 +8,20 @@ import { ListAllCategoriesComponent } from './components/category/list-all-categ
 import { ListAllAuthorsComponent} from './components/authors/list-all-authors/list-all-authors.component';
 import { BookCardComponent } from './components/category/book-card/book-card.component';
 import { AuthorDetailsComponent} from './components/authors/author-details/author-details.component';
-import {AuthModule} from "../Auth/auth/auth.module"
-import { SignupComponent } from '../Auth/signup/signup.component';
-import { SigninComponent } from '../Auth/signin/signin.component';
+import { LoginComponent } from '../auth/components/login/login.component';
+import { RegisterComponent } from '../auth/components/register/register.component';
 
 
 const navBarRoutes: Routes = [
-  {path:'',redirectTo:"/home",pathMatch:'full'},
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'author', component:  ListAllAuthorsComponent},
   {path: 'category',component: ListAllCategoriesComponent },
   {path: 'book',component: ListAllBooksComponent},
   {path: 'book/:id',component: BookDetailsComponent},
   {path: 'category/:id',component: BookCardComponent},
   {path: 'author/:id',component:AuthorDetailsComponent},
-  // {path:'signin',component:SigninComponent},
-  // {path:'signup',component:SignupComponent}
+  {path:'signin',component:LoginComponent},
+  {path:'signup',component:RegisterComponent}
 
 
 ];

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms'
 import { AppComponent } from './app.component';
 import { MainDashboardModule } from './main-dashboard/main-dashboard.module';
-import {AuthModule} from './Auth/auth/auth.module';
+import {AuthModule} from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import{ UserDashboardModule } from './Dashboard/user-dashboard/user-dashboard.module';

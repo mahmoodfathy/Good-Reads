@@ -10,6 +10,7 @@ export interface Book{
      EditionLanguage: String,
      Characters: String }
   ],
+  avgRating?:number,
   totalRatingCount?: number,
   totalRatingValue?: number,
   totalReviewsCount?: number,
