@@ -1,60 +1,59 @@
 <div class="container d-flex">
-    <div class="text-center">
-        <div class="img-container">
-            <img src="https://specials-images.forbesimg.com/imageserve/5f85be4ed0acaafe77436710/960x0.jpg?fit=scale" class="img-fluid img-thumbnail" alt="book image">
-        </div>
-        <button class="btn btn-primary" (click)="open(content)">Add book</button>
-        <form [formGroup]="ratingForm" class="review-form"(ngSubmit)="addRating()">
-            <input type="number" min="0" max="5" default="5" formControlName="rating" [(ngModel)]="rating"/>
-            <input class="btn btn-primary" type="submit" [disabled]="isLoading" value="Add Rating"/>
-        </form>
+  <div class="text-center">
+    <div class="img-container">
+      <img src="https://specials-images.forbesimg.com/imageserve/5f85be4ed0acaafe77436710/960x0.jpg?fit=scale" class="img-fluid img-thumbnail" alt="book image">
     </div>
+    <button class="btn btn-primary" (click)="open(content)">Add book</button>
+    <star-rating [value]="bookDetails.totalRatingCount > 0 ? bookDetails.totalRatingValue / bookDetails.totalRatingCount : 0 " [totalstars]="5" checkedcolor="#D4AF37" uncheckedcolor="#ccc" [readonly]="readOnly" size="24px" (rate)="onRate($event)"></star-rating>
+  </div>
 
-    <div class="book-info">
-        <h3>{{bookDetails.name}}</h3>
-        <p>By: {{bookDetails.author ? bookDetails.author : "unkown"}}</p>
-        <p>{{bookDetails.category ? bookDetails.category.category : "not listed Category"}}</p>
-        <p>{{bookDetails.totalRatingValue}} / 5 - {{bookDetails.totalRatingCount}} Rating</p>
-    </div>
+  <div class="book-info">
+    <h3>{{bookDetails.name}}</h3>
+    <p>By: {{bookDetails.author ? bookDetails.author : "unkown"}}</p>
+    <p>{{bookDetails.category ? bookDetails.category.category : "not listed Category"}}</p>
+    <p>
+      <star-rating [value]="bookDetails.totalRatingCount > 0 ? bookDetails.totalRatingValue / bookDetails.totalRatingCount : 0 " [totalstars]="5" checkedcolor="#D4AF37" uncheckedcolor="#ccc" size="24px"></star-rating>
+      {{bookDetails.totalRatingCount}} Rating(s)</p>
+  </div>
 </div>
 
 <div class="container review-container">
-    <div>
-        <form [formGroup]="myForm" class="review-form"(ngSubmit)="addReview()">
-            <input class="text" type="text" placeholder="Type a review" formControlName="review" [(ngModel)]="review"/>
-            <input class="btn btn-primary" type="submit" [value]="isLoading ? 'loading...' : 'Add Review'" [disabled]="myForm.invalid || isLoading">
-            <p class="text-danger" *ngIf="myForm.invalid">Review must be atleast 10 charachters</p>
-        </form>
-    </div>
-    <app-reviews [reviews]="reviews"></app-reviews>
+  <div>
+    <form [formGroup]="myForm" class="review-form"(ngSubmit)="addReview()">
+      <input class="text" type="text" placeholder="Type a review" formControlName="review" [(ngModel)]="review"/>
+      <input class="btn btn-primary" type="submit" [value]="isLoading ? 'loading...' : 'Add Review'" [disabled]="myForm.invalid || isLoading">
+      <p class="text-danger" *ngIf="myForm.invalid">Review must be atleast 10 charachters</p>
+    </form>
+  </div>
+  <app-reviews [reviews]="reviews"></app-reviews>
 </div>
 
 
 <!--Add book modal-->
 <ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Update Shelf</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form>
-            <div class="form-group">
-                <label for="dateOfBirth">Choose shelf</label>
-                <div class="input-group" *ngIf="!isLoading; else elseBlock">
-                    <select (change)="setSelectedValue($event)">
-                        <option value="read">read</option>
-                        <option value="want to read" selected>want to read</option>
-                        <option value="currently reading">currently reading</option>
-                    </select>
-                </div>
-                <br>
-                <ng-template #elseBlock>Loading....</ng-template>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="handleShelfUpdate()" [disabled]="isLoading">Save</button>
-    </div>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update Shelf</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Choose shelf</label>
+        <div class="input-group" *ngIf="!isLoading; else elseBlock">
+          <select (change)="setSelectedValue($event)">
+            <option value="read">read</option>
+            <option value="want to read" selected>want to read</option>
+            <option value="currently reading">currently reading</option>
+          </select>
+        </div>
+        <br>
+        <ng-template #elseBlock>Loading....</ng-template>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="handleShelfUpdate()" [disabled]="isLoading">Save</button>
+  </div>
 </ng-template>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { BooksTableComponent } from './user-dashboard/books-table/books-table.component';
 import { UserBooksService } from '../../Services/userBooks.service';
+import { RatingModule } from 'ng-starrating';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { UserBooksService } from '../../Services/userBooks.service';
     BooksTableComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RatingModule
   ],
   providers: [
     UserBooksService

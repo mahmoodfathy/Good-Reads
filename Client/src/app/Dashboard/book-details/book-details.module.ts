@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { ReviewsComponent } from './book-details/reviews/reviews.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { RatingModule } from 'ng-starrating';
 
 
 @NgModule({
@@ -11,7 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RatingModule
   ],
   providers: [],
   exports: [

@@ -4,7 +4,7 @@
             <th scope="col">Name</th>
             <th scope="col">Author</th>
             <th scope="col">AvgRating</th>
-            <th scope="col">Rating</th>
+            <th scope="col">Total Rating Count</th>
             <th scope="col">Shelve</th>
             <th scope="col">Action</th>
         </tr>
@@ -15,7 +15,9 @@
                 {{ bookObj.book.name }}
             </td>
             <td>{{ bookObj.book.author || "unknown"  }}</td>
-            <td>{{ bookObj.book.avgRating || 0 }}</td>
+            <td>
+              <star-rating [value]="bookObj.book.totalRatingCount > 0 ? bookObj.book.totalRatingValue / bookObj.book.totalRatingCount : 0 " [totalstars]="5" [readonly]="false" checkedcolor="#D4AF37" uncheckedcolor="#ccc" size="24px"></star-rating>
+          </td>
             <td>{{ bookObj.book.totalRatingCount }}</td>
             <td>{{ bookObj.shelf }}</td>
             <td>

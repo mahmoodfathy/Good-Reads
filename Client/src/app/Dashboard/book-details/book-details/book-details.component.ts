@@ -4,6 +4,7 @@ import { BookService } from '../../../Services/book.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { StarRatingComponent } from 'ng-starrating';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class BookDetailsComponent implements OnInit {
   reviews:Array<any> = [];
   isLoading:boolean = false;
   selectedValue:string = "want to read";
+  readOnly:boolean = false;
   
   setSelectedValue(event:any){
     this.selectedValue = event.target.value;
@@ -62,10 +64,6 @@ export class BookDetailsComponent implements OnInit {
   myForm= new FormGroup({
     review:new FormControl('',[Validators.required, Validators.minLength(10)])
   })
-  
-  ratingForm= new FormGroup({
-    rating:new FormControl('',[])
-  })
 
   ngOnInit(): void {
     this.id = this.myActivatedRoute.snapshot.params.id;
@@ -103,19 +101,20 @@ export class BookDetailsComponent implements OnInit {
     )
   }
   
-  addRating(){
+  onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}) {
     let body:any = {
       userId: "60550e28eccf94ea1ccc8195"
     };
-    this.isLoading = true;
-    this.subscriber = this.bookService.addRatingToBook(this.id, this.rating, body)
+    
+    this.readOnly = true;
+    this.subscriber = this.bookService.addRatingToBook(this.id, $event.newValue, body)
     .subscribe((response:any) => {
       this.bookDetails = response;
       this.reviews = response.reviews;
-      this.isLoading = false;
+      this.readOnly = false;
     }, err => {
       console.log(err);
-      this.isLoading = false;
+      this.readOnly = false;
     });
   }
   

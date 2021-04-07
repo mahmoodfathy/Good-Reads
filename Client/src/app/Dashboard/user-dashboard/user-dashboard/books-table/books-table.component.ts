@@ -9,7 +9,7 @@ import { UserBooksService } from '../../../../Services/userBooks.service';
 })
 export class BooksTableComponent implements OnInit {
 
-  constructor(private modalService: NgbModal, private userBooksService: UserBooksService) { }
+  constructor(private modalService: NgbModal, private userBooksService: UserBooksService) {  }
 
   ngOnInit(): void {
   }
