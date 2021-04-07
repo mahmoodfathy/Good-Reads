@@ -114,6 +114,15 @@ const getUserBooks = async(req, res)=>{
       return res.send({error: "user not found"});
     }
     res.status(200);
+    let filteredBooks = user.books.filter(bookObj => {
+      if(bookObj.book != null)
+        return bookObj;
+    });
+    
+    if(filteredBooks.length != user.books.length){
+      await user.updateOne({books: filteredBooks});
+    }
+    
     return res.send({
       username: user.username,
       id: user._id,
@@ -171,8 +180,12 @@ const addBookToUser = async(req, res)=>{
       res.status(404);
       return res.send({error: "no such book found"});
     }
-
-    user = await User.findByIdAndUpdate(id, { $push: { books: {book: book._id} } }, {new: true});
+    
+    if(req.body.shelf)
+      user = await User.findByIdAndUpdate(id, { $push: { books: {book: book._id, shelf: req.body.shelf} } }, {new: true});
+    else
+      user = await User.findByIdAndUpdate(id, { $push: { books: {book: book._id} } }, {new: true});
+      
 
     res.status(200);
     return res.send(user);
