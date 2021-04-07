@@ -1,6 +1,7 @@
 const express = require("express");
 const bookRouter = express.Router();
 const booksController = require("../Controllers/Book");
+const {check} = require("express-validator");
 
 /** APIs **/
 
@@ -20,5 +21,12 @@ bookRouter.delete("/:id", booksController.deleteBook);
 bookRouter.patch("/:id", booksController.editBook);
 
 bookRouter.get("/category/:id", booksController.getCategoryBooks);
+
+//Add review to book
+bookRouter.put('/:id', userAuth.auth, [
+  check("userId", "userId is required").exists(),
+  check("userName", "userName is required").exists(),
+  check("text", "text is required").exists(),
+], booksController.addReview);
 
 module.exports = bookRouter;
