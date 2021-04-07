@@ -106,7 +106,7 @@ exports.getMostPopular= async (req,res,next)=>{
     return res.status(500).json(err);
   }
 }
-
+/* Get Books for Specific Category */
 exports.getCategoryBooks = async (req, res) => {
   let { id } = req.params;
 
@@ -120,5 +120,46 @@ exports.getCategoryBooks = async (req, res) => {
     return res.status(200).json(books);
   } catch (err) {
     return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+/* Get Books for Specific Author */
+exports.getAuthorBooks = async (req, res) => {
+  let { id } = req.params;
+  try {
+    const books = await BookModel.find({ author: id });
+    if (books.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No Books Found for this Author" });
+    }
+    return res.status(200).json(books);
+  } catch (err) {
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+/* Add Review to Book */
+
+exports.addReview = async(req, res)=>{
+  
+  const errors = validationResult(req);
+  if(!errors.isEmpty()){
+    //if there are errors send a bad request
+    res.status(400);
+    return res.json({errors: errors.array()});
+  }
+  
+  let {id} = req.params;
+  
+  try{
+    let book = await BookModel.findByIdAndUpdate(id, { $push: { reviews: req.body } }, {new: true});
+    
+    if(!book)
+      return res.status(404).send({error: "No such book found"});
+    
+    return res.status(200).send(book);
+  }catch(err){
+    console.log(err);
+    return res.status(500).send({error: "something went wrong"});
   }
 };
