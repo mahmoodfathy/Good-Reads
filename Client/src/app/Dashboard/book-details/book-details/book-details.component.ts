@@ -58,7 +58,8 @@ export class BookDetailsComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.subscriber.unsubscribe();
-    this.secondSubscriber.unsubscribe();
+    if(this.secondSubscriber)
+      this.secondSubscriber.unsubscribe();
   }
   
   myForm= new FormGroup({
