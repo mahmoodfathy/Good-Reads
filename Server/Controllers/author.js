@@ -37,12 +37,12 @@ exports.getAllAuthors = async (request, response) => {
     }
     return response.status(200).json(Authors);
   } catch (err) {
-    return res.status(500).json(err);
+    return response.status(500).json(err);
   }
 };
 exports.getAuthor = async (req, res) => {
-  if(!req.user.isAdmin)
-    return res.status(401).send({error: "Unauthorized action"});
+  // if(!req.user.isAdmin)
+  //   return res.status(401).send({error: "Unauthorized action"});
   const { id } = req.params;
   try {
     const oneAuthor = await AuthorModel.findById(id)

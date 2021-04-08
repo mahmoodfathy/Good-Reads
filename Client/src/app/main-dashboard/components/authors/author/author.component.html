@@ -1,0 +1,14 @@
+<div class="container">
+  <a [routerLink]="author._id.toString()"
+    ><img
+      [src]="
+        author.imageURL
+          ? author.imageURL
+          : 'https://upload.wikimedia.org/wikipedia/en/e/ee/Unknown-person.gif'
+      "
+    />
+  </a>
+  <a routerLinkActive="text-danger" [routerLink]="author._id.toString()"
+    >{{ author.firstname }} {{ author.lastname }}</a
+  >
+</div>

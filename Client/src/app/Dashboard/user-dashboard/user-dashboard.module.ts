@@ -4,21 +4,12 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { BooksTableComponent } from './user-dashboard/books-table/books-table.component';
 import { UserBooksService } from '../../Services/userBooks.service';
 
+import { RatingModule } from 'ng-starrating';
 
 @NgModule({
-  declarations: [
-    UserDashboardComponent,
-    BooksTableComponent
-  ],
-  imports: [
-    CommonModule
-  ],
-  providers: [
-    UserBooksService
-  ],
-  exports: [
-    UserDashboardComponent,
-    BooksTableComponent
-  ]
+  declarations: [UserDashboardComponent, BooksTableComponent],
+  imports: [CommonModule, RatingModule],
+  providers: [UserBooksService],
+  exports: [UserDashboardComponent, BooksTableComponent],
 })
-export class UserDashboardModule { }
+export class UserDashboardModule {}
