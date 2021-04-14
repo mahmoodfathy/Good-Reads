@@ -1,0 +1,7 @@
+
+<div class="container">
+  <a [routerLink]="[book._id]"> <img [src]="book.cover" alt=""> </a>
+  <h3>{{book.name}}</h3>
+  <a routerLinkActive="text-danger" [routerLink]="['/','author',book.author._id]"> {{book.author.firstname}} {{book.author.lastname}} </a>
+  <a routerLinkActive="text-danger" [routerLink]="['/','category',book.category._id]">{{book.category.category}}</a>
+</div>

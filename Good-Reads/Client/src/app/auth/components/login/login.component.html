@@ -1,0 +1,36 @@
+
+<div class="card-body">
+    <h5 class="card-title text-center">Login</h5>
+    <form class="form-signin" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form-label-group">
+        <label for="username">Email</label>
+        <input
+          type="email" name="email" id="email" [formControl]="email" class="form-control shadow p-3 mb-5 bg-body rounded"placeholder="Email">
+    
+        <div [hidden]="email.valid || email.untouched">
+          <div class="badge bg-danger" [hidden]="email.valid">
+            email is not vaild
+          </div>
+          <div class="badge bg-danger" [hidden]="!email.hasError('required')">
+            email is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-label-group">
+        <label for="inputPassword">Password</label>
+        <input type="password" name="password" [formControl]="password" id="password" class="form-control shadow p-3 mb-5 bg-body rounded" placeholder="Password">
+        <div class="badge bg-danger"[hidden]="password.valid || password.untouched">
+          <div [hidden]="!password.hasError('minlength')">
+            password can not be shorter than 8 characters.
+          </div>
+        </div>
+      </div>
+      
+      <hr class="my-4">
+      <div class="badge bg-danger" [hidden]="!LoginErr">
+        invalid data
+      </div>
+      <button [disabled]="!userForm.valid || isLoading" type="submit" class="btn btn-lg btn-primary btn-block text-uppercase">{{isLoading?"Loading":"Login"}}</button>
+     
+   </form>
+  </div>

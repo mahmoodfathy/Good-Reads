@@ -1,0 +1,36 @@
+<!-- <div class="container">
+  <div class="row">
+    <div claa="col-2">
+      <img [src]="AuthorsDetails.imageUrl">
+    </div>
+    <br>
+    <div class="col-2">
+      <h3> {{AuthorsDetails.firstname}} {{AuthorsDetails.lastname}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <h3>{{AuthorsDetails.dob}}</h3>
+      <p>{{AuthorsDetails.shortDescription}}</p>
+    </div>
+  </div>
+</div> -->
+<div class="card">
+  <div class="card-header">
+    <div class="col-md-6">
+      <img class="lib-img-show" [src]="AuthorsDetails.imageUrl">
+  </div>
+  </div>
+  <div class="card-body">
+    {{AuthorsDetails.firstname}} {{AuthorsDetails.lastname}}<br>
+    
+    <h3>{{AuthorsDetails.dob}}</h3>
+    <br>
+    <p class="card-text"> {{AuthorsDetails.shortdescription}}</p>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <app-author-books></app-author-books>
+  </div>
+</div>

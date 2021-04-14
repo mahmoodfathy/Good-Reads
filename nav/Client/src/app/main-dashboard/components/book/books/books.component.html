@@ -1,0 +1,28 @@
+<div class="container">
+  <a [routerLink]="[book._id]">
+    <img
+      [src]="
+        book.cover
+          ? book.cover
+          : 'https://compellingreads.co.uk/wp-content/uploads/unknown-book-263x300.jpg'
+      "
+      alt=""
+    />
+  </a>
+  <h3>{{ book.name }}</h3>
+  <a
+    routerLinkActive="text-danger"
+    [routerLink]="['/', 'author', book.author ? book.author._id : 1]"
+  >
+    {{
+      book.author
+        ? book.author.firstname + " " + book.author.lastname
+        : "unknown"
+    }}
+  </a>
+  <a
+    routerLinkActive="text-danger"
+    [routerLink]="['/', 'category', book.category ? book.category._id : 1]"
+    >{{ book.category.category }}</a 
+  >
+</div>

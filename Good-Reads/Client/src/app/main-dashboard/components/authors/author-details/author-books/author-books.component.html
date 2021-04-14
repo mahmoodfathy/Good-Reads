@@ -1,0 +1,35 @@
+<!-- <div class="container"> -->
+    <!-- <div class="row">
+        <div class="col-5">
+            <div *ngFor="let book of books">
+                 <img [src]="book.cover?book.cover:'https://compellingreads.co.uk/wp-content/uploads/unknown-book-263x300.jpg'">
+                <h4>{{book.name}}</h4>
+                <span>{{book.totalRatingValue}}</span>
+                <span>{{book.totalRatingCount}}</span> 
+
+            </div>
+        </div>
+    </div>
+</div> -->
+<div *ngFor="let book of books">
+    <div class="row row-margin-bottom">
+        <div class="col-md-5 no-padding lib-item" data-category="view">
+            <div class="lib-panel">
+                <div class="row box-shadow">
+                    <div class="col-md-6">
+                        <img class="lib-img-show" [src]="book.cover">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="lib-row lib-header">
+                            {{book.name}}
+                            <div class="lib-header-seperator"></div>
+                        </div>
+                        <div class="lib-row lib-desc">
+                            {{book.totalRatingValue}}     <span>{{book.totalRatingCount}}</span> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

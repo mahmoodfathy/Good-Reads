@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <div *ngFor="let book of books">
+                <img [src]="book.cover?book.cover:'https://compellingreads.co.uk/wp-content/uploads/unknown-book-263x300.jpg'">
+                <h4>{{book.name}}</h4>
+                <span>{{book.totalRatingValue}}</span>
+                <span>{{book.totalRatingCount}}</span>
+            </div>
+        </div>
+    </div>
+</div>
