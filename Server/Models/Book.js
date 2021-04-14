@@ -5,7 +5,7 @@ const bookSchema = new mongoose.Schema({
   description: {
     type: String,
     minlength: 10,
-    maxLength: [20, "Maximum description Length is 20 character"],
+    maxLength: [100, "Maximum description Length is 20 character"],
   },
   details: [
     { Paperback: { type: String, maxLength: 2 } },
@@ -17,7 +17,7 @@ const bookSchema = new mongoose.Schema({
   totalRatingCount: { type: Number, default: 0 },
   totalRatingValue: { type: Number, default: 0 },
   totalReviewsCount: { type: Number, default: 0 },
-  addedDate: { type: Date, default: Date.now },
+  addedDate: { type: Date,default:new Date()},
   review: { type: String },
   rating: { type: Number, default: 0 },
   avgRating:{type:Number,default:0},
@@ -25,8 +25,5 @@ const bookSchema = new mongoose.Schema({
   category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
 });
 
-bookSchema.statics.getAvgRating=function(){
-  return this.avgRating= this.totalRatingValue/this.totalRatingCount;
-}
 const Book = mongoose.model("Book", bookSchema);
 module.exports = Book;

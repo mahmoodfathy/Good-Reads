@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthorsService} from "../../../../Services/authors.service";
 import {ActivatedRoute} from "@angular/router";
 import {Author} from "../../../../models/author";
+import {UserBooksService} from '../../../../Services/userBooks.service';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class AuthorDetailsComponent implements OnInit ,OnDestroy{
     this.subscriber=this.getOneAuthorService.getAuthorById(this.authorActivatedRoute.snapshot.params.id)
       .subscribe((res:any)=>{
           this.AuthorsDetails=res.body;
+          console.log(this.AuthorsDetails);
+          
         },(error)=>{
           console.log(error);
         }

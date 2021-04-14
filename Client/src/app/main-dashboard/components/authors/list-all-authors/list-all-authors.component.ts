@@ -10,7 +10,7 @@ import {Author} from '../../../../models/author';
 export class ListAllAuthorsComponent implements OnInit,OnDestroy {
 
   constructor(private listAuthors:AuthorsService) { }
-  Authors:Array<Author>=[{_id:0,firstname:'',lastname:'',imageURL:'',shortDescription:'',dob:new Date(),book:[{_id:0}]}];
+  Authors:Array<Author>;
   subscriber:any;
   ngOnInit(): void {
     this.subscriber=this.listAuthors.getAllAuthors()

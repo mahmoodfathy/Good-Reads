@@ -1,0 +1,9 @@
+.bookBox{
+    position: absolute;
+    left: 5%;
+    top:290px;
+}
+.parent{
+    position: relative;
+
+}

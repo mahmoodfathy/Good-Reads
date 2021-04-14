@@ -29,6 +29,9 @@ import {AppRoutingModule} from '../app-routing.module';
 import { NotFoundComponent } from './components/not-found/not-found.component'
 import { BookService } from '../Services/book.service';
 import { UserBooksService } from '../Services/userBooks.service';
+import { RatingModule } from 'ng-starrating';
+
+
 
 
 
@@ -45,8 +48,8 @@ import { UserBooksService } from '../Services/userBooks.service';
     FormsModule,
     ReactiveFormsModule,
     MainDashboardRoutingModule,
-    AppRoutingModule
-
+    AppRoutingModule,
+    RatingModule
   ],
   providers:[BooksService,AuthorsService,CategoriesService,BookService,UserBooksService],
   exports:[MainDashboardComponent]

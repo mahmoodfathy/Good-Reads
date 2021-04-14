@@ -1,24 +1,24 @@
 <div class="row box pt-4">
-    <div class="col-2 border border-dark rounded bookBox p-1 ">
-        <h5 class="font-weight-bold text-center"> Author's Book</h5>
-    </div>
     <div class="col-12">
-        <div *ngFor="let book of books">
+        <div *ngFor= " let book of books ">
             <div class="row my-4">
                 <div class="col-2">
-                    <img class="img-fluid"
-                        [src]="book.cover?book.cover:'https://compellingreads.co.uk/wp-content/uploads/unknown-book-263x300.jpg'">
+                    <a [routerLink]="['/','book',book._id]" >
+                        <img class="img-fluid" [src]="book.cover?book.cover:'https://compellingreads.co.uk/wp-content/uploads/unknown-book-263x300.jpg'">
+                    </a>
                 </div>
                 <div class="col-6 mt-3">
-                    <h5 class="mb-3">{{book.name}}</h5>
-                    <span>{{book.totalRatingValue}} -</span>
-                    <span>{{book.totalRatingCount}} Ratings</span>
+                    <a [routerLink]="['/','book',book._id]" class="mb-3" >{{book.name}}</a>
+                    <span> <star-rating [value]="book.totalRatingValue/book.totalRatingCount"  size= "24px" [totalstars]= totalStars checkedcolor= "gold" [readonly]="true" > </star-rating> </span> 
+                    <span> {{book.totalRatingValue}}/{{book.totalRatingCount}} -</span>
+                    <span> {{book.totalRatingCount}} Ratings -</span>
+                    <span> {{book.totalReviewsCount}} Reviews</span>
                 </div>
-                <div class="col-3 float-right">
-                    <select class="form-select" aria-label="Default select example">
+                <div class="col-3 float-right" *ngIf="isAutharized">
+                    <select  [id]="book._id" class="form-select" aria-label="Default select example" (change)="setSelectedValue($event)">
                         <option selected>Currently Reading</option>
-                        <option value="1">Want To Read</option>
-                        <option value="2">Read</option>
+                        <option value="read">Read</option>
+                        <option value="want to read">Want To Read</option>
                     </select>
                 </div>
                 <hr>

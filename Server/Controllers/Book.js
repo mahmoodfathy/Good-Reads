@@ -6,7 +6,6 @@ exports.addBooks = async (req, res) => {
   if (!req.user.isAdmin)
     return res.status(401).send({ error: "Unauthorized action" });
   const { name, category, author, description, cover } = req.body;
-
   const book = new BookModel({
     name,
     category,
@@ -96,7 +95,6 @@ exports.editBook = async (req, res) => {
 /* List Most Popular Books From DB  Need Pagination */
 exports.getMostPopular= async (req,res,next)=>{
   try{
-    avgRating=await BookModel.getAvgRating();
     const topBooks = await BookModel.find({ avgRating: { $gt: 3 } })
     if(!topBooks){
       return res.status(404).json({ message: "No Popular books found" });

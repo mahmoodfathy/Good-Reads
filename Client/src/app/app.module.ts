@@ -8,6 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import{ UserDashboardModule } from './Dashboard/user-dashboard/user-dashboard.module';
 import { DashboardModule } from './Dashboard/dashboard/dashboard.module';
+import {AppRoutingModule} from './app-routing.module'
+
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +25,10 @@ import { DashboardModule } from './Dashboard/dashboard/dashboard.module';
     NgbModule,
     UserDashboardModule,
     DashboardModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
+    
+    
   ],
   bootstrap: [AppComponent]
 

@@ -3,7 +3,7 @@ export interface Author{
   firstname?: String,
   lastname?: String,
   imageURL?: String,
-  dob?: Date,
+  dob?: String,
   shortDescription?: String,
   book?:[{_id:number}]
 }
