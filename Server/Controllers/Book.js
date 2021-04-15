@@ -1,5 +1,6 @@
 const BookModel = require("../Models/Book");
-const booksPaginationMiddleware = require('../MiddleWares/Book');
+const booksPaginationMiddleware = require("../MiddleWares/Book");
+const { validationResult } = require("express-validator");
 
 /* Add Book To DB */
 exports.addBooks = async (req, res) => {
@@ -22,14 +23,15 @@ exports.addBooks = async (req, res) => {
 };
 
 /* List All Books From DB Need Pagination */
+
 exports.getAllBooks = async (req, res,next) => {
   try {
-    const {page = 1,limit = 10} = parseInt(req.query);
-    const startIndex = (page - 1 ) * limit;
-    const endIndex = limit * page;
-    const books = await BookModel.find({}).populate("author").populate("category")
-        .limit(endIndex)
-        .skip(startIndex);
+    // const {page = 1,limit = 10} = parseInt(req.query);
+    // const startIndex = (page - 1 ) * limit;
+    // const endIndex = limit * page;
+    const books = await BookModel.find({})
+        // .limit(endIndex)
+        // .skip(startIndex);
     if (!books) {
       res.status(404);
       return res.send({ error: "books not found" });
@@ -93,6 +95,7 @@ exports.editBook = async (req, res) => {
 };
 
 /* List Most Popular Books From DB  Need Pagination */
+
 exports.getMostPopular= async (req,res,next)=>{
   try{
     const topBooks = await BookModel.find({ avgRating: { $gt: 3 } })
@@ -104,6 +107,7 @@ exports.getMostPopular= async (req,res,next)=>{
     return res.status(500).json(err);
   }
 }
+
 /* Get Books for Specific Category */
 exports.getCategoryBooks = async (req, res) => {
   let { id } = req.params;
@@ -138,26 +142,84 @@ exports.getAuthorBooks = async (req, res) => {
 };
 /* Add Review to Book */
 
-exports.addReview = async(req, res)=>{
-  
+exports.addReview = async (req, res) => {
   const errors = validationResult(req);
-  if(!errors.isEmpty()){
+  if (!errors.isEmpty()) {
     //if there are errors send a bad request
     res.status(400);
-    return res.json({errors: errors.array()});
+    return res.json({ errors: errors.array() });
   }
-  
-  let {id} = req.params;
-  
-  try{
-    let book = await BookModel.findByIdAndUpdate(id, { $push: { reviews: req.body } }, {new: true});
-    
-    if(!book)
-      return res.status(404).send({error: "No such book found"});
-    
+
+  let { id } = req.params;
+
+  try {
+    let book = await BookModel.findByIdAndUpdate(
+      id,
+      { $push: { reviews: req.body } },
+      { new: true }
+    );
+
+    if (!book) return res.status(404).send({ error: "No such book found" });
+
     return res.status(200).send(book);
-  }catch(err){
+  } catch (err) {
     console.log(err);
-    return res.status(500).send({error: "something went wrong"});
+    return res.status(500).send({ error: "something went wrong" });
+  }
+};
+exports.addRating = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    //if there are errors send a bad request
+    res.status(400);
+    return res.json({ errors: errors.array() });
+  }
+
+  let { id, rating } = req.params;
+  let { userId } = req.body;
+
+  if (rating > 5 || rating < 0) {
+    return res.status(400).send({ error: "invalid rating" });
+  }
+
+  try {
+    let book = await BookModel.find({
+      _id: id,
+      ratingUsers: { $elemMatch: { userId: userId } },
+    });
+    if (book.length > 0) {
+      let oldRating = book[0].ratingUsers.filter(
+        (user) => user.userId == userId
+      )[0].oldRating;
+      let updatedRatedUsers = book[0].ratingUsers.map((user) => {
+        if (user.userId == userId) {
+          user.oldRating = rating;
+          return user;
+        }
+        return user;
+      });
+      book = await BookModel.findByIdAndUpdate(
+        id,
+        {
+          $inc: { totalRatingValue: rating - oldRating },
+          ratingUsers: updatedRatedUsers,
+        },
+        { new: true }
+      );
+      res.status(200);
+      return res.send(book);
+    }
+    book = await BookModel.findByIdAndUpdate(
+      id,
+      {
+        $inc: { totalRatingValue: rating, totalRatingCount: 1 },
+        $push: { ratingUsers: { userId: userId, oldRating: rating } },
+      },
+      { new: true }
+    );
+    return res.status(200).send(book);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({ error: "something went wrong" });
   }
 };

@@ -25,9 +25,6 @@ const navBarRoutes: Routes = [
   {path:'signin',component:LoginComponent},
   {path:'signup',component:RegisterComponent},
   {path:'**',component:NotFoundComponent}
-
-
-
 ];
 
 
@@ -36,10 +33,8 @@ const navBarRoutes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(navBarRoutes)
+    RouterModule.forChild(navBarRoutes),
   ],
-  exports:[
-    RouterModule
-  ]
+  exports: [RouterModule],
 })
-export class MainDashboardRoutingModule { }
+export class MainDashboardRoutingModule {}

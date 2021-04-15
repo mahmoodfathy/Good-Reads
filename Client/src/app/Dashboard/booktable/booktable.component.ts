@@ -7,7 +7,7 @@ import { BookService } from 'src/app/Services/book.service';
 export interface Book {
   _id: String;
   name: string;
-  author: { firstname: string; lastname: string };
+  author: { firstname: string; lastname: string; _id?: string };
   cover: string;
   category: { category: string };
   description?: string;

@@ -69,17 +69,17 @@ const userLogin = async (req, res) => {
         isAdmin: user.isAdmin,
       },
     };
-    jwt.sign(payload, "123456", { expiresIn: 36000 }, (err, token) => {
-      if (err) throw err;
-      res.status(200);
-      return res.json({
-        username: user.username,
-        id: user._id,
-        books: user.books,
-        imageUrl: user.imageUrl,
-        isAdmin: user.isAdmin,
-        token: token,
-      });
+    const token = await jwt.sign(payload, "123456", { expiresIn: 36000 });
+    console.log(user);
+    res.status(200);
+
+    return res.json({
+      username: user.username,
+      id: user._id,
+      books: user.books,
+      imageURL: user.imageURL,
+      isAdmin: user.isAdmin,
+      token: token,
     });
   } catch (err) {
     console.error(err.message);
@@ -106,7 +106,16 @@ const getUserBooks = async (req, res) => {
     if (id != req.user.id)
       return res.status(401).send({ error: "Unathorized action" });
     //books.book is the field you want to populate
-    let user = await User.findById(id).populate("books.book").exec();
+    let user = await User.findById(id)
+      .populate("books.book")
+      .populate({
+        path: "books.book",
+        populate: {
+          path: "author",
+          model: "Author",
+        },
+      })
+      .exec();
     if (!user) {
       res.status(404);
       return res.send({ error: "user not found" });
@@ -177,11 +186,18 @@ const addBookToUser = async (req, res) => {
       return res.send({ error: "no such book found" });
     }
 
-    user = await User.findByIdAndUpdate(
-      id,
-      { $push: { books: { book: book._id } } },
-      { new: true }
-    );
+    if (req.body.shelf)
+      user = await User.findByIdAndUpdate(
+        id,
+        { $push: { books: { book: book._id, shelf: req.body.shelf } } },
+        { new: true }
+      );
+    else
+      user = await User.findByIdAndUpdate(
+        id,
+        { $push: { books: { book: book._id } } },
+        { new: true }
+      );
 
     res.status(200);
     return res.send(user);
@@ -233,6 +249,20 @@ const addBookToShelf = async (req, res) => {
     return res.send({ error: "server error" });
   }
 };
+const getUser = async (req, res) => {
+  let { id } = req.user;
+  console.log(id);
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "No user Found" });
+    }
+    return res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 const controllers = {
   userRegister,
@@ -242,6 +272,7 @@ const controllers = {
   deleteUserAllBooks,
   addBookToUser,
   addBookToShelf,
+  getUser,
 };
 
 module.exports = controllers;

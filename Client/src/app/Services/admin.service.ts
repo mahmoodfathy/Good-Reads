@@ -1,37 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { CanActivate, Router } from '@angular/router';
+import { decodeToken } from '../auth/services/custom-validation.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class AdminService {
-
-  constructor(private bookClient:HttpClient) {}
-  readonly baseURL:string="http://localhost:5000/admin";
-
-  addNewBook(){
-
+export class AdminService implements CanActivate {
+  constructor(private router: Router) {}
+  isAdmin() {
+    const user = decodeToken();
+    console.log(user.isAdmin);
+    return user.isAdmin;
   }
-  addNewAuthor(){
+  canActivate() {
+    if (!this.isAdmin()) {
+      this.router.navigate(['/']);
+      return false;
+    }
+    return true;
   }
-  addNewCategory(){
-  }
-  editBook(){
-  }
-  editAuthor(){
-  }
-  editCategory(){
-
-  }
-  deleteBook(){
-
-  }
-  deleteAuthor(){
-
-  }
-  deleteCategory(){
-
-  }
-
-
 }

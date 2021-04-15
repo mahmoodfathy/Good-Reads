@@ -2,8 +2,7 @@ const express = require("express");
 const bookRouter = express.Router();
 const booksController = require("../Controllers/Book");
 const userAuth = require("../MiddleWares/User");
-const {check} = require("express-validator");
-
+const { check } = require("express-validator");
 
 /** APIs **/
 
@@ -31,11 +30,22 @@ bookRouter.get("/category/:id", booksController.getCategoryBooks);
 bookRouter.get("/author/:id", booksController.getAuthorBooks);
 
 //Add review to book
-bookRouter.put('/:id', userAuth.auth, [
+bookRouter.put(
+  "/:id",
+  userAuth.auth,
+  [
     check("userId", "userId is required").exists(),
     check("userName", "userName is required").exists(),
     check("text", "text is required").exists(),
-  ], booksController.addReview);
+  ],
+  booksController.addReview
+);
 
+bookRouter.put(
+  "/:id/:rating",
+  userAuth.auth,
+  [check("userId", "userId is required").exists()],
+  booksController.addRating
+);
 
 module.exports = bookRouter;

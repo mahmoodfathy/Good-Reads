@@ -16,8 +16,20 @@
           <p class="card-text">
             {{ book.description ? book.description : "" }}
           </p>
-          <a  class="btn btn-primary book" [routerLink]="['/','book',book._id]">{{ book.name }}</a>
-          <a  class="btn btn-primary author" [routerLink]="['/','author',book.author._id]">{{book.author? book.author.firstname + " " + book.author.lastname: "unknown"}}</a>
+          <a
+            class="btn btn-primary book"
+            [routerLink]="['/', 'book', book._id]"
+            >{{ book.name }}</a
+          >
+          <a
+            class="btn btn-primary author"
+            [routerLink]="['/', 'author', book.author ? book.author._id : 1]"
+            >{{
+              book.author
+                ? book.author.firstname + " " + book.author.lastname
+                : "unknown"
+            }}</a
+          >
         </div>
       </div>
     </div>

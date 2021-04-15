@@ -1,55 +1,250 @@
 [
-    {
-        "totalRatingCount": 40,
-        "totalRatingValue": 140,
-        "totalReviewsCount": 50,
-        "name": "The Seagull",
-        "category": {"_id":"606500b4f194f32b484add16"},
-        "author": {"_id": "606efde698987a35c49fc54d"},
-        "description": "When it first opened in St Petersburg in 1896, The Seagull survived only five performances after a disastrous first opening night.",
-        "details": [
-            { "Paperback": "65 pages" },
-            { "PublishedDate": "April 25th 2002" },
-            { "OriginalTitle":"Чайка" },
-            { "EditionLanguage": "English" },
-            { "Characters": "Irina Nikolaievna Arkadina, Constantin Gavrilovitch Treplev, Piotr Nikolaievitch Sorine, Nina Mikhailovna Zaretchnaia" }
-          ],
-        "avgRating": 3.5,
-        "cover":"https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1443340069l/79649.jpg"
+  {
+    "totalRatingCount": 40,
+    "totalRatingValue": 140,
+    "totalReviewsCount": 50,
+    "name": "The Seagull",
+    "category": {
+      "_id": "606500b4f194f32b484add16"
     },
-    {
-        "totalRatingCount": 70,
-        "totalRatingValue": 220,
-        "totalReviewsCount": 20,
-        "name": "The Duel",
-        "category": {"_id":"606f131cef46ac19e602ea27"},
-        "author": {"_id": "606efde698987a35c49fc54d"},
-        "description": "When it first opened in St Petersburg in 1896, The Seagull survived only five performances after a disastrous first opening night. Two years later it was revived by Nemirovich-Danchenko at the newly-founded Moscow Art Theatre with Stanslasky as Trigorin and was an immediate success.",
-        "details": [
-            { "Paperback": "128 pages" },
-            { "PublishedDate": "October 14th 2003" },
-            { "OriginalTitle":"Дуэль" },
-            { "EditionLanguage": "English" }
-          ],
-        "avgRating": 3.1,
-        "cover":"https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320389131l/312862.jpg"
+    "author": {
+      "_id": "606efde698987a35c49fc54d"
     },
-    {
-        "totalRatingCount": 10,
-        "totalRatingValue": 40,
-        "totalReviewsCount": 3,
-        "name": "Gooseberries",
-        "category": {"_id":"6064f959f194f32b484add15"},
-        "author": {"_id": "606efde698987a35c49fc54d"},
-        "description": "'Gooseberries' is accompanied here by 'The Kiss' and 'The Two Volodyas' - three exquisite depictions of love and loss in nineteenth-century Russia by Chekhov, the great master of the short story form.",
-        "addedDate":"April 25th 2002",
-        "details": [
-            { "Paperback": "240 pages" },
-            { "PublishedDate": "April 6th 2001" },
-            { "OriginalTitle":"Крыжовник" },
-            { "EditionLanguage": "English" }
-          ],
-        "avgRating": 4,
-        "cover":"https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423553585l/16435236.jpg"
-    }
+    "description": "When it first opened in St Petersburg in 1896, The Seagull survived only five performances after a disastrous first opening night.",
+    "details": [
+      {
+        "Paperback": "65 pages"
+      },
+      {
+        "PublishedDate": "April 25th 2002"
+      },
+      {
+        "OriginalTitle": "Чайка"
+      },
+      {
+        "EditionLanguage": "English"
+      },
+      {
+        "Characters": "Irina Nikolaievna Arkadina, Constantin Gavrilovitch Treplev, Piotr Nikolaievitch Sorine, Nina Mikhailovna Zaretchnaia"
+      }
+    ],
+    "avgRating": 3.5,
+    "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1443340069l/79649.jpg"
+  },
+  {
+    "totalRatingCount": 70,
+    "totalRatingValue": 220,
+    "totalReviewsCount": 20,
+    "name": "The Duel",
+    "category": {
+      "_id": "606f131cef46ac19e602ea27"
+    },
+    "author": {
+      "_id": "606efde698987a35c49fc54d"
+    },
+    "description": "When it first opened in St Petersburg in 1896, The Seagull survived only five performances after a disastrous first opening night. Two years later it was revived by Nemirovich-Danchenko at the newly-founded Moscow Art Theatre with Stanslasky as Trigorin and was an immediate success.",
+    "details": [
+      {
+        "Paperback": "128 pages"
+      },
+      {
+        "PublishedDate": "October 14th 2003"
+      },
+      {
+        "OriginalTitle": "Дуэль"
+      },
+      {
+        "EditionLanguage": "English"
+      }
+    ],
+    "avgRating": 3.1,
+    "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320389131l/312862.jpg"
+  },
+  {
+    "totalRatingCount": 10,
+    "totalRatingValue": 40,
+    "totalReviewsCount": 3,
+    "name": "Gooseberries",
+    "category": {
+      "_id": "6064f959f194f32b484add15"
+    },
+    "author": {
+      "_id": "606efde698987a35c49fc54d"
+    },
+    "description": "'Gooseberries' is accompanied here by 'The Kiss' and 'The Two Volodyas' - three exquisite depictions of love and loss in nineteenth-century Russia by Chekhov, the great master of the short story form.",
+    "addedDate": "April 25th 2002",
+    "details": [
+      {
+        "Paperback": "240 pages"
+      },
+      {
+        "PublishedDate": "April 6th 2001"
+      },
+      {
+        "OriginalTitle": "Крыжовник"
+      },
+      {
+        "EditionLanguage": "English"
+      }
+    ],
+
+    "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423553585l/16435236.jpg"
+  },
+  {
+    "totalRatingCount": 40,
+    "totalRatingValue": 140,
+    "totalReviewsCount": 50,
+    "name": "The Seagull",
+    "category": {
+      "_id": "606500b4f194f32b484add16"
+    },
+    "author": {
+      "_id": "606efde698987a35c49fc54d"
+    },
+    "description": "When it first opened in St Petersburg in 1896, The Seagull survived only five performances after a disastrous first opening night.",
+    "details": [
+      {
+        "Paperback": "65 pages"
+      },
+      {
+        "PublishedDate": "April 25th 2002"
+      },
+      {
+        "OriginalTitle": "Чайка"
+      },
+      {
+        "EditionLanguage": "English"
+      },
+      {
+        "Characters": "Irina Nikolaievna Arkadina, Constantin Gavrilovitch Treplev, Piotr Nikolaievitch Sorine, Nina Mikhailovna Zaretchnaia"
+      }
+    ],
+    "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1443340069l/79649.jpg"
+  },
+  {
+    "totalRatingCount": 40,
+    "totalRatingValue": 140,
+    "totalReviewsCount": 50,
+    "name": "The Seagull",
+    "category": {
+      "_id": "606500b4f194f32b484add16"
+    },
+    "author": {
+      "_id": "606efde698987a35c49fc54d"
+    },
+    "description": "When it first opened in St Petersburg in 1896, The Seagull survived only five performances after a disastrous first opening night.",
+    "details": [
+      {
+        "Paperback": "65 pages"
+      },
+      {
+        "PublishedDate": "April 25th 2002"
+      },
+      {
+        "OriginalTitle": "Чайка"
+      },
+      {
+        "EditionLanguage": "English"
+      },
+      {
+        "Characters": "Irina Nikolaievna Arkadina, Constantin Gavrilovitch Treplev, Piotr Nikolaievitch Sorine, Nina Mikhailovna Zaretchnaia"
+      }
+    ],
+
+    "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1443340069l/79649.jpg"
+  },
+  {
+    "totalRatingCount": 40,
+    "totalRatingValue": 140,
+    "totalReviewsCount": 50,
+    "name": "The Seagull",
+    "category": {
+      "_id": "606500b4f194f32b484add16"
+    },
+    "author": {
+      "_id": "606efde698987a35c49fc54d"
+    },
+    "description": "When it first opened in St Petersburg in 1896, The Seagull survived only five performances after a disastrous first opening night.",
+    "details": [
+      {
+        "Paperback": "65 pages"
+      },
+      {
+        "PublishedDate": "April 25th 2002"
+      },
+      {
+        "OriginalTitle": "Чайка"
+      },
+      {
+        "EditionLanguage": "English"
+      },
+      {
+        "Characters": "Irina Nikolaievna Arkadina, Constantin Gavrilovitch Treplev, Piotr Nikolaievitch Sorine, Nina Mikhailovna Zaretchnaia"
+      }
+    ],
+    "avgRating": 3.5,
+    "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1443340069l/79649.jpg"
+  },
+  {
+    "totalRatingCount": 40,
+    "totalRatingValue": 140,
+    "totalReviewsCount": 50,
+    "name": "The Seagull",
+    "category": {
+      "_id": "606500b4f194f32b484add16"
+    },
+    "author": {
+      "_id": "606efde698987a35c49fc54d"
+    },
+    "description": "When it first opened in St Petersburg in 1896, The Seagull survived only five performances after a disastrous first opening night.",
+    "details": [
+      {
+        "Paperback": "65 pages"
+      },
+      {
+        "PublishedDate": "April 25th 2002"
+      },
+      {
+        "OriginalTitle": "Чайка"
+      },
+      {
+        "EditionLanguage": "English"
+      },
+      {
+        "Characters": "Irina Nikolaievna Arkadina, Constantin Gavrilovitch Treplev, Piotr Nikolaievitch Sorine, Nina Mikhailovna Zaretchnaia"
+      }
+    ],
+    "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1443340069l/79649.jpg"
+  },
+  {
+    "totalRatingCount": 40,
+    "totalRatingValue": 140,
+    "totalReviewsCount": 50,
+    "name": "The Seagull",
+    "category": {
+      "_id": "606500b4f194f32b484add16"
+    },
+    "author": {
+      "_id": "606efde698987a35c49fc54d"
+    },
+    "description": "When it first opened in St Petersburg in 1896, The Seagull survived only five performances after a disastrous first opening night.",
+    "details": [
+      {
+        "Paperback": "65 pages"
+      },
+      {
+        "PublishedDate": "April 25th 2002"
+      },
+      {
+        "OriginalTitle": "Чайка"
+      },
+      {
+        "EditionLanguage": "English"
+      },
+      {
+        "Characters": "Irina Nikolaievna Arkadina, Constantin Gavrilovitch Treplev, Piotr Nikolaievitch Sorine, Nina Mikhailovna Zaretchnaia"
+      }
+    ],
+    "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1443340069l/79649.jpg"
+  }
 ]
