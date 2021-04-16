@@ -1,5 +1,5 @@
 .avatar {
-  height: 50px;
+  height: 40px;
   width: 50px;
   border-radius: 50%;
   padding: 0;
@@ -9,4 +9,13 @@
   color: white;
   display: inline;
   margin-right: 10px;
+}
+
+nav{
+  background-color: #6159e6;
+}
+
+a{
+  color: #FFF;
+  padding: 5px 5px
 }

@@ -4,6 +4,6 @@ export interface Author{
   lastname?: String,
   imageURL?: String,
   dob?: String,
-  shortDescription?: String,
+  shortdescription?: String,
   book?:[{_id:number}]
 }

@@ -1,30 +1,3 @@
-<!-- <div class="container">
-  <div class="row mb-5 parent">
-    <div class="col-3 border border-dark rounded bookBox">
-      <h5 class="font-weight-bold text-center">
-        {{ AuthorsDetails ? AuthorsDetails.firstname : "unknown" }}
-        {{ AuthorsDetails ? AuthorsDetails.lastname : "unknown" }} 's Book
-      </h5>
-    </div>
-    <div class="col-3">
-      <img
-        class="image"
-        [src]="
-          AuthorsDetails.imageURL
-            ? AuthorsDetails.imageURL
-            : 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255634-stock-illustration-avatar-icon-male-profile-gray.jpg'
-        "
-      />
-    </div>
-    <div class="col-6 mt-4">
-      <h4 class="text-capitalize">
-        {{ AuthorsDetails.firstname }} {{ AuthorsDetails.lastname }}
-      </h4>
-      <p>{{ AuthorsDetails.dob }}</p>
-      <p>{{ AuthorsDetails.shortDescription }}</p>
-    </div>
-  </div>
-</div> -->
 <div class="card mb-3 text-center">
   <img
     [src]="
@@ -40,7 +13,7 @@
       {{ AuthorsDetails ? AuthorsDetails.firstname : "unknown" }}
     </h5>
     <p class="card-text">
-      {{ AuthorsDetails ? AuthorsDetails.shortDescription : "No description" }}
+      {{ AuthorsDetails ? AuthorsDetails.shortdescription : "No description" }}
     </p>
     <p class="card-text">
       <small class="text-muted">{{ AuthorsDetails.dob }}</small>

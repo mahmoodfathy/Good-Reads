@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-3">
-     <app-books  *ngFor="let book of books" [bookCard]="book"> </app-books>
+    <div class="col-sm-4" *ngFor="let book of books">
+      <app-books [bookCard]="book"> </app-books>
     </div>
   </div>
 </div>
