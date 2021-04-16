@@ -21,7 +21,7 @@ export function decodeToken() {
   providedIn: 'root',
 })
 export class CustomValidationService implements CanActivate {
-  readonly baseURL: string = 'http://localhost:5000/user';
+  readonly baseURL: string = 'https://good-reads-iti.herokuapp.com/user';
   isLoggedIn: boolean = false;
   private loggedIn = new BehaviorSubject<boolean>(false);
   private user = new BehaviorSubject<IUser>({});
@@ -76,7 +76,7 @@ export class CustomValidationService implements CanActivate {
     return Math.floor(new Date().getTime() / 1000) >= expiry;
   }
   getUser(token: string) {
-    let url = 'http://localhost:5000/user/logged';
+    let url = 'https://good-reads-iti.herokuapp.com/user/logged';
     return this.http.get(url, { headers: { 'x-auth-token': token } });
   }
   isAuth$() {
