@@ -12,7 +12,6 @@ const routes: Routes = [
     component: UserDashboardComponent,
     canActivate: [CustomValidationService],
   },
-  { path: 'categories/:id', component: BookCardComponent },
   {
     path: 'home/admin',
     component: AdminCategoryComponent,

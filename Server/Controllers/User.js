@@ -219,11 +219,21 @@ const addBookToShelf = async (req, res) => {
       return res.send({ error: "user not found" });
     }
     let books = user.books;
+    if (shelf === "none") {
+      userHasBook = true;
+      user = await User.findByIdAndUpdate(
+        id,
 
-    for (let i = 0; i < books.length; i++) {
-      if (user.books[i].book == bookId) {
-        userHasBook = true;
-        books[i]["shelf"] = shelf;
+        { $pull: { books: { book: bookId } } },
+        { new: true }
+      );
+      return res.status(200).json(user);
+    } else {
+      for (let i = 0; i < books.length; i++) {
+        if (user.books[i].book == bookId) {
+          userHasBook = true;
+          books[i]["shelf"] = shelf;
+        }
       }
     }
 

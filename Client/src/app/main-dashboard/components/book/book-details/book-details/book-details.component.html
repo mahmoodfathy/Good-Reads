@@ -12,7 +12,10 @@
           alt="book image"
         />
       </div>
-      <button class="btn btn-primary" (click)="open(content)">Add book</button>
+      <button *ngIf="isAuth" class="btn btn-primary" (click)="open(content)">
+        Add book
+      </button>
+
       <star-rating
         [value]="
           bookDetails.totalRatingCount > 0
@@ -25,6 +28,7 @@
         [readonly]="readOnly"
         size="24px"
         (rate)="onRate($event)"
+        *ngIf="isAuth"
       ></star-rating>
     </div>
 
@@ -62,7 +66,7 @@
       </p>
     </div>
   </div>
-  <div class="container review-container">
+  <div *ngIf="isAuth" class="container review-container">
     <div>
       <form [formGroup]="myForm" class="review-form" (ngSubmit)="addReview()">
         <input
@@ -83,8 +87,10 @@
         </p>
       </form>
     </div>
-    <app-reviews [reviews]="reviews"></app-reviews>
   </div>
+</div>
+<div [class]="reviews.length !== 0 ? 'container review-container' : ''">
+  <app-reviews [reviews]="reviews"></app-reviews>
 </div>
 
 <!--Add book modal-->

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Book } from 'src/app/Dashboard/booktable/booktable.component';
+// import { Book } from 'src/app/Dashboard/booktable/booktable.component';
+import { Book } from '../../../../models/book';
 import { FilterCategoryService } from 'src/app/Services/filter-category.service';
 
 @Component({

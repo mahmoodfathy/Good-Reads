@@ -1,13 +1,13 @@
 const BookModel = require("../Models/Book");
 const booksPaginationMiddleware = require("../MiddleWares/Book");
 const { validationResult } = require("express-validator");
+const Author = require("../Models/author");
 
 /* Add Book To DB */
 exports.addBooks = async (req, res) => {
   if (!req.user.isAdmin)
     return res.status(401).send({ error: "Unauthorized action" });
   const { name, category, author, description, cover } = req.body;
-
   const book = new BookModel({
     name,
     category,
@@ -17,6 +17,8 @@ exports.addBooks = async (req, res) => {
   });
   try {
     await book.save();
+
+    await Author.findByIdAndUpdate(author, { $push: { books: book._id } });
     return res.status(200).json({ message: "book Added successfully" });
   } catch (err) {
     return res.status(500).json(err);
@@ -24,16 +26,17 @@ exports.addBooks = async (req, res) => {
 };
 
 /* List All Books From DB Need Pagination */
+
 exports.getAllBooks = async (req, res, next) => {
   try {
-    const { page = 1, limit = 10 } = parseInt(req.query);
-    const startIndex = (page - 1) * limit;
-    const endIndex = limit * page;
+    // const {page = 1,limit = 10} = parseInt(req.query);
+    // const startIndex = (page - 1 ) * limit;
+    // const endIndex = limit * page;
     const books = await BookModel.find({})
       .populate("author")
-      .populate("category")
-      .limit(endIndex)
-      .skip(startIndex);
+      .populate("category");
+    // .limit(endIndex)
+    // .skip(startIndex);
     if (!books) {
       res.status(404);
       return res.send({ error: "books not found" });
@@ -67,12 +70,14 @@ exports.deleteBook = async (req, res) => {
     return res.status(401).send({ error: "Unauthorized action" });
   const bookId = req.params.id;
   try {
-    const deletedState = await BookModel.findByIdAndDelete(bookId);
-    console.log(deletedState);
-    if (!deletedState) {
+    const book = await BookModel.findById(bookId);
+    await Author.findByIdAndUpdate(book.author, { $pull: { books: bookId } });
+    await book.deleteOne();
+
+    if (!book) {
       return res.status(404).json({ message: "Book not found!" });
     }
-    return res.status(200).json(deletedState);
+    return res.status(200).json(book);
   } catch (err) {
     console.log(err);
     return res.status(500).json(err);
@@ -88,6 +93,11 @@ exports.editBook = async (req, res) => {
 
   try {
     const updatedBook = await BookModel.updateOne({ _id: id }, newBookData);
+    await Author.updateMany({}, { $pull: { books: id } });
+
+    await Author.findByIdAndUpdate(newBookData.author, {
+      $push: { books: id },
+    });
     if (!updatedBook) {
       return res.status(404).json({ message: "book not exist" });
     }
@@ -99,9 +109,9 @@ exports.editBook = async (req, res) => {
 };
 
 /* List Most Popular Books From DB  Need Pagination */
+
 exports.getMostPopular = async (req, res, next) => {
   try {
-    avgRating = await BookModel.getAvgRating();
     const topBooks = await BookModel.find({ avgRating: { $gt: 3 } });
     if (!topBooks) {
       return res.status(404).json({ message: "No Popular books found" });
@@ -111,6 +121,7 @@ exports.getMostPopular = async (req, res, next) => {
     return res.status(500).json(err);
   }
 };
+
 /* Get Books for Specific Category */
 exports.getCategoryBooks = async (req, res) => {
   let { id } = req.params;
@@ -208,9 +219,9 @@ exports.addRating = async (req, res) => {
           ratingUsers: updatedRatedUsers,
         },
         { new: true }
-      );
+      ).populate("author");
       res.status(200);
-      return res.send(book);
+      return res.json(book);
     }
     book = await BookModel.findByIdAndUpdate(
       id,
@@ -219,10 +230,10 @@ exports.addRating = async (req, res) => {
         $push: { ratingUsers: { userId: userId, oldRating: rating } },
       },
       { new: true }
-    );
-    return res.status(200).send(book);
+    ).populate("author");
+    return res.status(200).json(book);
   } catch (err) {
     console.log(err);
-    return res.status(500).send({ error: "something went wrong" });
+    return res.status(500).json({ error: "something went wrong" });
   }
 };

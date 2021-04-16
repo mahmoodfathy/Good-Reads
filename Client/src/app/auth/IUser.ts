@@ -4,4 +4,5 @@ export interface IUser {
   _id?: string;
   imageURL?: string;
   token?: string;
+  isAdmin?: string;
 }

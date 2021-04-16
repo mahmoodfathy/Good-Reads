@@ -36,6 +36,8 @@ export class BookDetailsComponent implements OnInit {
   error: any;
   userInfo: IUser;
   userInfoSubscriber: Subscription;
+  authSubscriber: Subscription;
+  isAuth: boolean;
 
   setSelectedValue(event: any) {
     this.selectedValue = event.target.value;
@@ -89,11 +91,21 @@ export class BookDetailsComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.authSubscriber = this.myService.isAuthenticated.subscribe(
+      (res: boolean) => {
+        this.isAuth = res;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
     this.id = this.myActivatedRoute.snapshot.params.id;
     this.userInfoSubscriber = this.myService
       .getUserInfo()
       .subscribe((res: IUser) => {
         this.userInfo = res;
+        console.log(res);
       });
     this.subscriber = this.bookService.getBookById(this.id).subscribe(
       (response: any) => {
@@ -106,6 +118,7 @@ export class BookDetailsComponent implements OnInit {
         console.log(err);
       }
     );
+    console.log(this.userInfo);
   }
 
   addReview() {
@@ -147,6 +160,7 @@ export class BookDetailsComponent implements OnInit {
           this.bookDetails = response;
           this.reviews = response.reviews;
           this.readOnly = false;
+          console.log(response);
         },
         (err) => {
           console.log(err);

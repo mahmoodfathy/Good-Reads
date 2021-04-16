@@ -9,7 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserDashboardModule } from './Dashboard/user-dashboard/user-dashboard.module';
 import { DashboardModule } from './Dashboard/dashboard/dashboard.module';
 import { AppRoutingModule } from './app-routing.module';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -21,7 +21,12 @@ import { AppRoutingModule } from './app-routing.module';
     UserDashboardModule,
     DashboardModule,
     HttpClientModule,
+    AppRoutingModule,
+    NgxPaginationModule
+    
+    
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
+
 })
 export class AppModule {}

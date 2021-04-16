@@ -31,6 +31,7 @@ import { BookService } from '../Services/book.service';
 import { UserBooksService } from '../Services/userBooks.service';
 import { RatingModule } from 'ng-starrating';
 import { AdminService } from '../Services/admin.service';
+import { PaginationService } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { AdminService } from '../Services/admin.service';
     BookService,
     UserBooksService,
     AdminService,
+    PaginationService
   ],
   exports: [MainDashboardComponent],
 })

@@ -6,6 +6,7 @@ const { check } = require("express-validator");
 
 /** APIs **/
 
+
 /* Add Book To DB */
 bookRouter.post("/", userAuth.auth, booksController.addBooks);
 
@@ -13,10 +14,10 @@ bookRouter.post("/", userAuth.auth, booksController.addBooks);
 bookRouter.get("/", booksController.getAllBooks);
 
 /* Get one Book From DB */
-bookRouter.get("/:id", booksController.getOneBook);
+bookRouter.get('/:id',booksController.getOneBook);
 
 /* List Most Popular Books From DB */
-bookRouter.get("/top", booksController.getMostPopular);
+bookRouter.get('/top', booksController.getMostPopular);
 
 /* Delete one Book From DB */
 bookRouter.delete("/:id", userAuth.auth, booksController.deleteBook);

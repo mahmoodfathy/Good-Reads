@@ -49,6 +49,7 @@ export class BookService {
         category: book.category,
         description: book.description,
         cover: book.cover,
+        author: book.author,
       },
       { headers: this.headers }
     );
@@ -72,6 +73,7 @@ export class BookService {
         category: book.category,
         description: book.description,
         cover: book.cover,
+        author: book.author,
       },
       { headers: this.headers }
     );
