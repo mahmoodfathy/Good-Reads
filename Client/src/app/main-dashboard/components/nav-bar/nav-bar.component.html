@@ -3,7 +3,7 @@
   class="navbar navbar-expand-lg flex-column flex-sm-row"
 >
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Good Reads </a>
+    <a class="navbar-brand" [routerLink]="['/']">Good Reads </a>
     <button
       class="navbar-toggler"
       type="button"
@@ -21,36 +21,33 @@
           <a
             class="nav-link"
             [routerLinkActiveOptions]="{ exact: true }"
-            routerLinkActive="text-danger"
+            routerLinkActive="active"
             routerLink=""
             >Home</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="text-danger" routerLink="book"
+          <a class="nav-link" routerLinkActive="active" routerLink="book"
             >Books</a
           >
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLinkActive="text-danger"
-            routerLink="category"
+          <a class="nav-link" routerLinkActive="active" routerLink="category"
             >Categories</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="text-danger" routerLink="author"
+          <a class="nav-link" routerLinkActive="active" routerLink="author"
             >Authors</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="text-danger" routerLink="signup"
+          <a class="nav-link" routerLinkActive="active" routerLink="signup"
             >Sign Up</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="text-danger" routerLink="signin"
+          <a class="nav-link" routerLinkActive="active" routerLink="signin"
             >Login</a
           >
         </li>
@@ -59,11 +56,9 @@
   </div>
 </nav>
 <ng-template #signedIn>
-  <nav
-    class="navbar navbar-expand-lg navbar-dark bg-dark flex-column flex-sm-row"
-  >
+  <nav class="navbar navbar-expand-lg flex-column flex-sm-row">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Good Reads </a>
+      <a class="navbar-brand" [routerLink]="['/']">Good Reads </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -81,36 +76,30 @@
             <a
               class="nav-link"
               [routerLinkActiveOptions]="{ exact: true }"
-              routerLinkActive="text-danger"
+              routerLinkActive="active"
               [routerLink]="['/home']"
               >Home</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="text-danger" routerLink="book"
+            <a class="nav-link" routerLinkActive="active" routerLink="book"
               >Books</a
             >
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLinkActive="text-danger"
-              routerLink="category"
+            <a class="nav-link" routerLinkActive="active" routerLink="category"
               >Categories</a
             >
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLinkActive="text-danger"
-              routerLink="author"
+            <a class="nav-link" routerLinkActive="active" routerLink="author"
               >Authors</a
             >
           </li>
           <li *ngIf="userInfo.isAdmin" class="nav-item">
             <a
               class="nav-link"
-              routerLinkActive="text-danger"
+              routerLinkActive="active"
               [routerLink]="['/home/admin']"
               >Admin Settings</a
             >
@@ -127,9 +116,7 @@
             />
             <p class="username">Welcome Back {{ userInfo.username }}</p>
           </li>
-          <button class="btn btn-outline-success" (click)="logout()">
-            Sign Out
-          </button>
+          <button class="btn signout" (click)="logout()">Sign Out</button>
         </ul>
       </div>
     </div>

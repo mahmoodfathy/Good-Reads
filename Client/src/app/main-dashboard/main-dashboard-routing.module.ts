@@ -13,6 +13,7 @@ import { LoginComponent } from '../auth/components/login/login.component';
 import { RegisterComponent } from '../auth/components/register/register.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { AboutComponent } from './components/about/about.component';
 
 const navBarRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,7 @@ const navBarRoutes: Routes = [
   { path: 'author/:id', component: AuthorDetailsComponent },
   { path: 'signin', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
+  { path: 'about', component: AboutComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

@@ -16,6 +16,7 @@ export class AuthorDetailsComponent implements OnInit, OnDestroy {
   ) {}
   AuthorsDetails: Author = {};
   subscriber: any;
+  error = false;
   ngOnInit(): void {
     this.subscriber = this.getOneAuthorService
       .getAuthorById(this.authorActivatedRoute.snapshot.params.id)
@@ -26,6 +27,7 @@ export class AuthorDetailsComponent implements OnInit, OnDestroy {
         },
         (error) => {
           console.log(error);
+          this.error = true;
         }
       );
   }

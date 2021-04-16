@@ -26,10 +26,12 @@ export class RegisterComponent {
     Validators.required,
     Validators.minLength(8),
   ]);
+  image = new FormControl('', [Validators.required]);
   userForm: FormGroup = this.builder.group({
     username: this.username,
     email: this.email,
     password: this.password,
+    image: this.image,
   });
   isLoading: boolean = false;
   LoginErr: boolean = false;

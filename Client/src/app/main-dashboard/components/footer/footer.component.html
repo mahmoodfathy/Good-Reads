@@ -1,19 +1,34 @@
 <footer class="footer mt-5 p-5">
- <div class="container">
-   <ul class="foote_bottom_ul_amrc">
-     <li><a [routerLinkActiveOptions]='{exact:true}' routerLinkActive="text-danger" routerLink="">Home</a></li>
-     <li><a routerLinkActive="text-danger" >About</a></li>
-     <li><a routerLinkActive="text-danger" routerLink="book">Book</a></li>
-     <li><a routerLinkActive="text-danger" routerLink="category">Categories</a></li>
-     <li><a routerLinkActive="text-danger" routerLink="author">Authors</a></li>
-     <li><a routerLinkActive="text-danger" >Contact</a></li>
-   </ul>
-   <p class="text-center">Copyright @2021 | Designed by <a [routerLinkActiveOptions]='{exact:true}' routerLinkActive="text-danger" routerLink="">Good Reads</a></p>
-   <ul class="social_footer_ul">
-     <li><img class="icon" src="/assets/facebook.png"/></li>
-     <li><img class="icon" src="/assets/twitter.png"/></li>
-     <li><img class="icon" src="/assets/instagram.png"/></li>
-   </ul>
- </div>
+  <div class="container">
+    <ul class="foote_bottom_ul_amrc">
+      <li>
+        <a
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="text-danger"
+          routerLink=""
+          >Home</a
+        >
+      </li>
+      <li><a routerLinkActive="text-danger" routerLink="about">About</a></li>
+      <li><a routerLinkActive="text-danger" routerLink="book">Book</a></li>
+      <li>
+        <a routerLinkActive="text-danger" routerLink="category">Categories</a>
+      </li>
+      <li><a routerLinkActive="text-danger" routerLink="author">Authors</a></li>
+    </ul>
+    <p class="text-center">
+      Copyright @2021 | Designed by
+      <a
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="text-danger"
+        routerLink=""
+        >Good Reads</a
+      >
+    </p>
+    <ul class="social_footer_ul">
+      <li><img class="icon" src="/assets/facebook.png" /></li>
+      <li><img class="icon" src="/assets/twitter.png" /></li>
+      <li><img class="icon" src="/assets/instagram.png" /></li>
+    </ul>
+  </div>
 </footer>
-

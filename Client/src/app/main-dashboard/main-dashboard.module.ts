@@ -32,9 +32,11 @@ import { UserBooksService } from '../Services/userBooks.service';
 import { RatingModule } from 'ng-starrating';
 import { AdminService } from '../Services/admin.service';
 import { PaginationService } from 'ngx-pagination';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
+    AboutComponent,
     NavBarComponent,
     HomeComponent,
     MainDashboardComponent,
@@ -72,7 +74,7 @@ import { PaginationService } from 'ngx-pagination';
     BookService,
     UserBooksService,
     AdminService,
-    PaginationService
+    PaginationService,
   ],
   exports: [MainDashboardComponent],
 })

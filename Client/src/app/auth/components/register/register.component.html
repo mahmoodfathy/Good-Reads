@@ -98,6 +98,25 @@
             <div class="badge bg-danger email" [hidden]="!LoginErr">
               Invalid Form Data
             </div>
+            <div class="form-label-group">
+              <label for="inputUserame">Profile Image Link</label>
+              <input
+                type="text"
+                name="image"
+                id="image"
+                [formControl]="image"
+                class="form-control shadow p-3 mb-5 bg-body rounded"
+                placeholder="image"
+              />
+              <div [hidden]="image.valid || image.untouched">
+                <div
+                  class="badge bg-danger email"
+                  [hidden]="!image.hasError('required')"
+                >
+                  Image Link is required.
+                </div>
+              </div>
+            </div>
             <button
               [disabled]="!userForm.valid || isLoading"
               class="btn btn-lg btn-primary btn-block text-uppercase"

@@ -17,3 +17,9 @@
   display: block !important;
   border: none !important;
 }
+.wrapper img {
+  width: 70%;
+}
+.wrapper {
+  text-align: center;
+}

@@ -1,7 +1,7 @@
 <div *ngIf="!error; else notFound" class="container top" #notFound>
   <div class="row">
-    <div *ngFor="let book of books; index as i" class="col-sm-6">
-      <div class="card" style="width: 18rem">
+    <div *ngFor="let book of books; index as i" class="col-sm-4">
+      <div class="card">
         <img
           [src]="
             book.cover

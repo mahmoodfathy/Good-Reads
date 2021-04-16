@@ -111,13 +111,18 @@ exports.editBook = async (req, res) => {
 /* List Most Popular Books From DB  Need Pagination */
 
 exports.getMostPopular = async (req, res, next) => {
+  console.log("here");
   try {
-    const topBooks = await BookModel.find({ avgRating: { $gt: 3 } });
+    const topBooks = await BookModel.find({
+      totalRatingCount: { $gte: 2 },
+    })
+    .limit(3);
     if (!topBooks) {
       return res.status(404).json({ message: "No Popular books found" });
     }
     return res.status(200).json(topBooks);
   } catch (err) {
+    console.log(err);
     return res.status(500).json(err);
   }
 };

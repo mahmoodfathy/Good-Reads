@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
  <div class="row ">
    <div class="col-4">
     <app-popular-books></app-popular-books>
@@ -10,6 +10,43 @@
      <app-popular-authors></app-popular-authors>
    </div>
  </div>
+</div> -->
+
+<div class="d-flex flex-row container">
+  <div class="info">
+    <p>Best Seller Book of the Week</p>
+    <h3>Bring Up A Genuis !</h3>
+    <span>
+      Well before having children, Laszlo Polgar wrote Bring Up Genius! where he
+      explained “Genius equals work and fortunate circumstances” and “Geniuses
+      are made, not born”. Laszlo went on to prove his theory by raising three
+      exceptional female chess players - Susan Polgar achieved the GM title at
+      21, Judit Polgar at 15, and sister Sofia is a strong IM.
+    </span>
+  </div>
+  <div class="image">
+    <img src="/assets/book lover.svg" alt="book" />
+  </div>
 </div>
 
+<div class="container">
+  <h3 class="text-center popular">Popular Books</h3>
 
+  <app-popular-books class="wrapper"></app-popular-books>
+</div>
+<div class="container">
+  <h3 class="text-center popular">Popular Authors</h3>
+
+  <app-popular-authors class="wrapper"></app-popular-authors>
+</div>
+
+<div class="container">
+  <h3 class="text-center popular">Contact</h3>
+  <div class="wrapper">
+    <div *ngFor="let detail of contactInfo" class="book-card text-center">
+      <img [src]="detail.icon" alt="" />
+      <p>{{ detail.name }}</p>
+      <span>{{ detail.description }}</span>
+    </div>
+  </div>
+</div>

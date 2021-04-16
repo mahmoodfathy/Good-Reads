@@ -9,8 +9,8 @@
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary:visited {
-  background-color: #8064a2 !important;
-  border-color: #8064a2;
+  background-color: #6159e6 !important;
+  border-color: #6159e6;
 }
 .top {
   margin-top: 20px;
@@ -26,4 +26,11 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+.card-img-top {
+  min-height: 250px;
+  max-height: 250px;
+}
+.card {
+  margin-bottom: 20px;
 }

@@ -32,7 +32,7 @@ export class AuthorBooksComponent implements OnInit, OnDestroy {
   // pager object
   pager: any = {};
   // paged items
-  pagedItems: any[];
+  pagedItems: any[] = [];
 
   setSelectedValue(event: any) {
     this.selectedValue = event.target.value;

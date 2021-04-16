@@ -1,26 +1,36 @@
-<div class="card mb-3 text-center">
-  <img
-    [src]="
-      AuthorsDetails.imageURL
-        ? AuthorsDetails.imageURL
-        : 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255634-stock-illustration-avatar-icon-male-profile-gray.jpg'
-    "
-    class="image"
-    alt="..."
-  />
-  <div class="card-body">
-    <h5 class="card-title">
-      {{ AuthorsDetails ? AuthorsDetails.firstname : "unknown" }}
-    </h5>
-    <p class="card-text">
-      {{ AuthorsDetails ? AuthorsDetails.shortdescription : "No description" }}
-    </p>
-    <p class="card-text">
-      <small class="text-muted">{{ AuthorsDetails.dob }}</small>
-    </p>
+<div *ngIf="!error; else notFound">
+  <div class="card mb-3 text-center">
+    <img
+      [src]="
+        AuthorsDetails.imageURL
+          ? AuthorsDetails.imageURL
+          : 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255634-stock-illustration-avatar-icon-male-profile-gray.jpg'
+      "
+      class="image"
+      alt="..."
+    />
+    <div class="card-body">
+      <h5 class="card-title">
+        {{ AuthorsDetails ? AuthorsDetails.firstname : "unknown" }}
+      </h5>
+      <p class="card-text">
+        {{
+          AuthorsDetails ? AuthorsDetails.shortdescription : "No description"
+        }}
+      </p>
+      <p class="card-text">
+        <small class="text-muted">{{ AuthorsDetails.dob | date }}</small>
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <app-author-books></app-author-books>
   </div>
 </div>
-
-<div class="container">
-  <app-author-books></app-author-books>
-</div>
+<ng-template #notFound>
+  <h1 class="text-center">Author not Found</h1>
+  <div class="wrapper">
+    <img src="/assets/book.jpg" alt="" />
+  </div>
+</ng-template>

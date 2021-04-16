@@ -1,4 +1,4 @@
-<div class="row box pt-4">
+<div *ngIf="pagedItems.length !== 0" class="row box pt-4">
   <div class="col-12">
     <div *ngFor="let book of pagedItems">
       <div class="row my-4">

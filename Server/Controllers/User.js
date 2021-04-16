@@ -4,7 +4,7 @@ const User = require("../Models/User");
 const Book = require("../Models/Book");
 
 const userRegister = async (req, res) => {
-  const { username, email, password, isAdmin } = req.body;
+  const { username, email, password, image } = req.body;
   try {
     let user = await User.findOne({ email: email });
     if (user) {
@@ -16,7 +16,7 @@ const userRegister = async (req, res) => {
       username: username,
       email: email,
       password: password,
-      isAdmin: isAdmin,
+      imageURL: image,
     });
     //Encrypt password
     const salt = await bcrypt.genSalt(10);

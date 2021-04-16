@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
         },
         (err) => {
           console.log(err);
+          localStorage.removeItem('token');
         }
       );
     }

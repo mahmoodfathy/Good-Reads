@@ -86,3 +86,14 @@ exports.updateAuthor = async (req, res) => {
     return res.status(500).json(err);
   }
 };
+exports.getPopularAuthors = async (req, res) => {
+  try {
+    const popularAuthors = await AuthorModel.find({}).limit(3);
+    if (!popularAuthors) {
+      return res.status(404).json({ message: "No Popular Authors Found!" });
+    }
+    return res.status(200).json(popularAuthors);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
