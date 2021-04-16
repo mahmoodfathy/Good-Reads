@@ -1,0 +1,25 @@
+.bookBox {
+  position: absolute;
+  left: 20px;
+  top: 290px;
+}
+.parent {
+  position: relative;
+}
+.image {
+  max-width: 250px;
+  max-height: 250px;
+  min-width: 250px;
+  min-height: 250px;
+  border-radius: 50%;
+}
+.card {
+  display: block !important;
+  border: none !important;
+}
+.wrapper img {
+  width: 70%;
+}
+.wrapper {
+  text-align: center;
+}

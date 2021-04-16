@@ -119,8 +119,18 @@
         {{ author.firstname }}
       </td>
       <td>{{ author.lastname }}</td>
-      <td>{{ author.imageURL ? author.imageURL : null }}</td>
-      <td>{{ author.dob }}</td>
+      <td>
+        <img
+          class="image"
+          [src]="
+            author.imageURL
+              ? author.imageURL
+              : 'https://i1.wp.com/ddrg.farmasi.unej.ac.id/wp-content/uploads/sites/6/2017/10/unknown-person-icon-Image-from.png?fit=221%2C228'
+          "
+          alt=""
+        />
+      </td>
+      <td>{{ author.dob | date }}</td>
       <td>
         <button
           class="btn btn-danger delete"

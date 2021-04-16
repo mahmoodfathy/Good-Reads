@@ -1,36 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { CategoryComponent } from './Dashboard/category/category.component';
+import { MainDashboardModule } from './main-dashboard/main-dashboard.module';
+import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserDashboardModule } from './Dashboard/user-dashboard/user-dashboard.module';
-import { SignupComponent } from './Auth/signup/signup.component';
-import { SigninComponent } from './Auth/signin/signin.component';
 import { DashboardModule } from './Dashboard/dashboard/dashboard.module';
-import { BookCardComponent } from './Shared/book-card/book-card.component';
-import { CategoriesComponent } from './Shared/categories/categories.component';
-
+import { AppRoutingModule } from './app-routing.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
-  declarations: [
-    AppComponent,
-    SignupComponent, 
-    SigninComponent, 
-    BookCardComponent, 
-    CategoriesComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
+    FormsModule,
+    AuthModule,
+    MainDashboardModule,
     NgbModule,
     UserDashboardModule,
-    DashboardModule
-  ],
-  providers: [
+    DashboardModule,
+    HttpClientModule,
+    AppRoutingModule,
+    NgxPaginationModule
+    
+    
   ],
   bootstrap: [AppComponent]
+
 })
 export class AppModule {}

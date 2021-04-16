@@ -1,0 +1,67 @@
+ [
+        {
+            "books": [],
+            "imageURL": "https://images.gr-assets.com/authors/1317162641p8/5031025.jpg",
+            "firstname": "Anton",
+            "lastname": "Chekhov",
+            "dob": "January 29, 1860",
+            "shortDescription": "Anton Pavlovich Chekhov (Russian: Антон Павлович Чехов ) was born in the small seaport of Taganrog, southern Russia, the son of a grocer. Chekhov's grandfather was a serf, who had bought his own freedom and that of his three sons in 1841. He also taught himself to read and write. Yevgenia Morozova, Chekhov's mother, was the daughter of a cloth merchant."
+        },
+        {
+            "imageURL":"https://images.gr-assets.com/authors/1201117958p8/39402.jpg",
+            "books": [],
+            "firstname": "Patrick",
+            "lastname": "Süskind",
+            "dob": "March 26, 1949",
+            "shortDescription": "From 1968-1974 he studied medieval and modern history in Munich and Aix-en-Provence. In the '80s he worked as a screenwriter, for Kir Royal and Monaco Franze among others. After spending the 1970s writing what he has characterized as “short unpublished prose pieces and longer un-produced screenplays”, Patrick Süskind was catapulted to fame in the 1980s by the monodrama Der Kontrabass (The Double Bass, 1981), which became an instant success and a favourite of the German stage."
+        },
+        {
+            "imageURL":"https://images.gr-assets.com/authors/1190140738p8/25573.jpg",
+            "books": [],
+            "firstname": "Stefan",
+            "lastname": "Zweig",
+            "dob":"November 28, 1881",
+            "shortDescription": "Stefan Zweig was one of the world's most famous writers during the 1920s and 1930s, especially in the U.S., South America, and Europe. He produced novels, plays, biographies, and journalist pieces. Among his most famous works are Beware of Pity, Letter from an Unknown Woman, and Mary, Queen of Scotland and the Isles. He and his second wife committed suicide in 1942."
+        },
+        {
+            "imageURL":"https://images.gr-assets.com/authors/1588857088p8/6343.jpg",
+            "books": [],
+            "firstname": "Milan",
+            "lastname": "Kundera",
+            "dob":"April 01, 1929",
+            "shortDescription": "Milan Kundera is a Czech and French writer of Czech origin who has lived in exile in France since 1975, where he became a naturalized French citizen in 1981. He is best known for The Unbearable Lightness of Being, The Book of Laughter and Forgetting, and The Joke. Kundera has written in both Czech and French. He revises the French translations of all his books; these therefore are not considered translations but original works."
+        },
+        {
+            "imageURL":"https://images.gr-assets.com/authors/1588856560p8/3706.jpg",
+            "books": [],
+            "firstname": "George",
+            "lastname": "Orwell",
+            "dob":"June 25, 1903",
+            "shortDescription": "Eric Arthur Blair, better known by his pen name George Orwell, was an English author and journalist. His work is marked by keen intelligence and wit, a profound awareness of social injustice, an intense opposition to totalitarianism, a passion for clarity in language, and a belief in democratic socialism."
+        },
+        {
+            "imageURL":"https://images.gr-assets.com/photos/1615656739p8/4003486.jpg",
+            "books": [],
+            "firstname": "Fyodor",
+            "lastname": "Dostoyevsky",
+            "dob":"November 11, 1821",
+            "shortDescription": "Fyodor Mikhailovich Dostoevsky was born in Moscow in 1821. His debut, the epistolary novella Poor Folk (1846), made his name. In 1849 he was arrested for involvement with the politically subversive 'Petrashevsky circle' and until 1854 he lived in a convict prison in Omsk, Siberia. From this experience came The House of the Dead (1860-2). In 1860 he began the journal Vremya (Time)."
+        },
+        {
+            "imageURL":"https://images.gr-assets.com/photos/1345785721p8/563200.jpg",
+            "books": [],
+            "firstname": "Haruki",
+            "lastname": "Murakami",
+            "dob":"January 12, 1949",
+            "shortDescription": "Since childhood, Murakami has been heavily influenced by Western culture, particularly Western music and literature. He grew up reading a range of works by American writers, such as Kurt Vonnegut and Richard Brautigan, and he is often distinguished from other Japanese writers by his Western influences."
+        },
+        {
+            "imageURL":"https://images.gr-assets.com/authors/1241299970p8/1268083.jpg",
+            "books": [],
+            "firstname": "مصطفى صادق ",
+            "lastname": "الرافعي",
+            "dob":"January 01, 1880",
+            "shortDescription": "مصطفى صادق الرافعي 1298 هـ - 1356 هـ ولد في بيت جده لأمه في قريةبهتيم بمحافظة القليوبية عاش حياته في طنطا وبذلك يكون الرافعي قد عاش سبعة وخمسين عاماً كانت كلها ألواناً متعددة من الكفاح المتواصل في الحياة والأدب والوطنية."
+        }
+        
+    ]

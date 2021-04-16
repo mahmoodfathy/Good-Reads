@@ -6,7 +6,7 @@ import { BooktableComponent } from '../booktable/booktable.component';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css'],
 })
-export class CategoryComponent implements OnInit {
+export class AdminCategoryComponent implements OnInit {
   constructor() {}
   active = 1;
   ngOnInit(): void {}

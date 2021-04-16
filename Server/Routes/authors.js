@@ -14,4 +14,6 @@ authorRouter.delete("/:id", userAuth.auth, AuthorController.deleteAuthor);
 
 authorRouter.patch("/:id", userAuth.auth, AuthorController.updateAuthor);
 
+authorRouter.get("/authors/top", AuthorController.getPopularAuthors);
+
 module.exports = authorRouter;

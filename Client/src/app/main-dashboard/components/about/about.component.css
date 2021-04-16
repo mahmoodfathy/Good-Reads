@@ -1,0 +1,30 @@
+.book-card {
+  width: 150px;
+  height: 250px;
+  position: relative;
+  font-family: sans-serif;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.book-card::after {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: -25px;
+  width: 200px;
+  height: 300px;
+  background-color: rgb(245, 244, 251);
+  z-index: -2;
+}
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 70px;
+  margin-bottom: 40px;
+}
+.book-card p {
+  color: #18b979;
+}

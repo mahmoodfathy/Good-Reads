@@ -42,16 +42,29 @@
             [(ngModel)]="description"
           />
         </div>
-        <label for="id">Enter Category Id</label>
+        <label for="id">Enter Category</label>
         <div class="input-group">
-          <input
+          <select
             id="category id"
             class="form-control"
-            placeholder="Please Enter Category Id.."
-            type="text"
-            formControlName="category"
-            [(ngModel)]="category"
-          />
+            (change)="handleCategorySelect($event)"
+          >
+            <option *ngFor="let category of categories" [value]="category._id">
+              {{ category.category }}
+            </option>
+          </select>
+        </div>
+        <label for="id">Select Author</label>
+        <div class="input-group">
+          <select
+            id="author id"
+            class="form-control"
+            (change)="handleAuthorSelect($event)"
+          >
+            <option *ngFor="let author of authors" [value]="author._id">
+              {{ author.firstname }}
+            </option>
+          </select>
         </div>
         <label for="imageLink">Cover Image Link</label>
         <div class="input-group">
@@ -108,7 +121,17 @@
         {{ book.name }}
       </td>
       <td>{{ book.author ? book.author.firstname : null }}</td>
-      <td>{{ book.cover }}</td>
+      <td>
+        <img
+          class="image"
+          [src]="
+            book.cover
+              ? book.cover
+              : 'https://compellingreads.co.uk/wp-content/uploads/unknown-book-263x300.jpg'
+          "
+          alt=""
+        />
+      </td>
       <td>{{ book.category ? book.category.category : null }}</td>
       <td>
         <button

@@ -1,8 +1,8 @@
 const AuthorModel = require("../Models/author");
 
 exports.createAuthor = async (req, res) => {
-  if(!req.user.isAdmin)
-    return res.status(401).send({error: "Unauthorized action"});
+  if (!req.user.isAdmin)
+    return res.status(401).send({ error: "Unauthorized action" });
   const {
     firstname,
     lastname,
@@ -19,7 +19,7 @@ exports.createAuthor = async (req, res) => {
     books,
     imageURL,
   });
-  //console.log(authorInstance.getFullName(),authorInstance.authorage())
+
   try {
     const newAuthor = await authorInstance.save();
     res.status(200).json({ message: "Author Added Successfully" });
@@ -37,12 +37,12 @@ exports.getAllAuthors = async (request, response) => {
     }
     return response.status(200).json(Authors);
   } catch (err) {
-    return res.status(500).json(err);
+    return response.status(500).json(err);
   }
 };
 exports.getAuthor = async (req, res) => {
-  if(!req.user.isAdmin)
-    return res.status(401).send({error: "Unauthorized action"});
+  // if(!req.user.isAdmin)
+  //   return res.status(401).send({error: "Unauthorized action"});
   const { id } = req.params;
   try {
     const oneAuthor = await AuthorModel.findById(id)
@@ -57,8 +57,8 @@ exports.getAuthor = async (req, res) => {
   }
 };
 exports.deleteAuthor = async (req, res) => {
-  if(!req.user.isAdmin)
-    return res.status(401).send({error: "Unauthorized action"});
+  if (!req.user.isAdmin)
+    return res.status(401).send({ error: "Unauthorized action" });
   const { id } = req.params;
   try {
     const deletautho = await AuthorModel.findByIdAndDelete(id).select(" -__v");
@@ -68,8 +68,8 @@ exports.deleteAuthor = async (req, res) => {
   }
 };
 exports.updateAuthor = async (req, res) => {
-  if(!req.user.isAdmin)
-    return res.status(401).send({error: "Unauthorized action"});
+  if (!req.user.isAdmin)
+    return res.status(401).send({ error: "Unauthorized action" });
   const { id } = req.params;
   const updatedAuthor = req.body;
 
@@ -82,6 +82,17 @@ exports.updateAuthor = async (req, res) => {
       return res.status(400).json({ message: "Author not updated !" });
     }
     return res.status(200).json({ message: "Author updateded Successfully" });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+exports.getPopularAuthors = async (req, res) => {
+  try {
+    const popularAuthors = await AuthorModel.find({}).limit(3);
+    if (!popularAuthors) {
+      return res.status(404).json({ message: "No Popular Authors Found!" });
+    }
+    return res.status(200).json(popularAuthors);
   } catch (err) {
     return res.status(500).json(err);
   }

@@ -5,23 +5,34 @@ const bookSchema = new mongoose.Schema({
   description: {
     type: String,
     minlength: 10,
-    maxLength: [20, "Maximum description Length is 20 character"],
+    maxLength: [100, "Maximum description Length is 100 character"],
   },
-  details: [
-    { Paperback: { type: String, maxLength: 2 } },
-    { PublishedDate: { type: Date } },
-    { OriginalTitle: { type: String } },
-    { EditionLanguage: { type: String } },
-    { Characters: { type: String } },
-  ],
+
   totalRatingCount: { type: Number, default: 0 },
   totalRatingValue: { type: Number, default: 0 },
   totalReviewsCount: { type: Number, default: 0 },
   addedDate: { type: Date, default: Date.now },
-  review: { type: String },
-  rating: { type: String, default: 0 },
+  ratingUsers: [
+    {
+      _id: false,
+      userId: { type: String },
+      oldRating: { type: Number },
+    },
+  ],
+  reviews: [
+    {
+      _id: false,
+      text: { type: String },
+      createdAt: { type: Date, default: Date.now },
+      userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+      userName: { type: String },
+    },
+  ],
+  rating: { type: Number, default: 0 },
+  avgRating: { type: Number, default: 0 },
   author: { type: mongoose.Schema.Types.ObjectId, ref: "Author" },
   category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
 });
+
 const Book = mongoose.model("Book", bookSchema);
 module.exports = Book;

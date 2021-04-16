@@ -2,12 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
+import { AuthorsService } from 'src/app/Services/authors.service';
 import { BookService } from 'src/app/Services/book.service';
+import { CategoriesService } from 'src/app/Services/categories.service';
 
 export interface Book {
-  _id: any;
+  _id: String;
   name: string;
-  author: { firstname: string; lastname: string };
+  author: { firstname: string; lastname: string; _id?: string };
   cover: string;
   category: { category: string };
   description?: string;
@@ -17,7 +19,7 @@ export interface BookSchema {
   category: string;
   description: string;
   cover: string;
-  // author: string;
+  author: string;
 }
 
 @Component({
@@ -26,10 +28,15 @@ export interface BookSchema {
   styleUrls: ['./booktable.component.css'],
 })
 export class BooktableComponent implements OnInit, OnDestroy {
-  constructor(private myService: BookService, private modalService: NgbModal) {}
+  constructor(
+    private myService: BookService,
+    private modalService: NgbModal,
+    private categoryService: CategoriesService,
+    private authorService: AuthorsService
+  ) {}
   filter = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    category: new FormControl('', [Validators.required]),
+
     // author: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     bookImage: new FormControl('', [Validators.required]),
@@ -47,6 +54,10 @@ export class BooktableComponent implements OnInit, OnDestroy {
   itemIndex: number;
   editMode: Boolean = false;
   newMode: Boolean = false;
+  categories: any = [];
+  categoryId = '';
+  authors: any = [];
+  authorId = '';
   ngOnDestroy() {
     this.subscriber.unsubscribe();
   }
@@ -57,6 +68,22 @@ export class BooktableComponent implements OnInit, OnDestroy {
       this.testBooks = res.body;
       console.log(this.testBooks);
     });
+    this.subscriber = this.categoryService
+      .getAllCategories()
+      .subscribe((res: any) => {
+        this.categories = res.body;
+        if (this.categories.length !== 0) {
+          this.categoryId = this.categories[0]._id;
+        }
+      });
+    this.subscriber = this.authorService
+      .getAllAuthors()
+      .subscribe((res: any) => {
+        this.authors = res.body;
+        if (this.authors.length !== 0) {
+          this.authorId = this.authors[0]._id;
+        }
+      });
   }
   open(content: any) {
     this.modalService
@@ -87,8 +114,8 @@ export class BooktableComponent implements OnInit, OnDestroy {
       .addBook({
         name: this.name,
         description: this.description,
-        // author: this.author,
-        category: this.category,
+        author: this.authorId,
+        category: this.categoryId,
         cover: this.bookImage,
       })
       .subscribe((res: any) => {
@@ -108,7 +135,7 @@ export class BooktableComponent implements OnInit, OnDestroy {
     //@TODO Handle the empty string bug, if the user wants to empty the field he should be able to !!
     const name = this.testBooks[this.itemIndex].name;
     const description = this.testBooks[this.itemIndex].description;
-    // const author = this.testBooks[this.itemIndex].author;
+    const author = this.testBooks[this.itemIndex].author;
     const category = this.testBooks[this.itemIndex].category;
     const cover = this.testBooks[this.itemIndex].cover;
 
@@ -116,8 +143,9 @@ export class BooktableComponent implements OnInit, OnDestroy {
       .editBook(this.id, {
         name: this.name === '' ? name : this.name,
         description: this.description === '' ? description : this.description,
-        category: this.category === '' ? category : this.category,
+        category: this.categoryId === '' ? category : this.categoryId,
         cover: this.bookImage === '' ? cover : this.bookImage,
+        author: this.authorId === '' ? author : this.authorId,
       })
       .subscribe((res: any) => {
         console.log(res);
@@ -142,5 +170,12 @@ export class BooktableComponent implements OnInit, OnDestroy {
     } else {
       return `with: ${reason}`;
     }
+  }
+  handleCategorySelect(e: any) {
+    this.categoryId = e.target.value;
+  }
+  handleAuthorSelect(e: any) {
+    this.authorId = e.target.value;
+    console.log(this.authorId);
   }
 }
