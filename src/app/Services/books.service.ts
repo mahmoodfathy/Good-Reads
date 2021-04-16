@@ -6,8 +6,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class BooksService {
   constructor(private bookClient: HttpClient) {}
-  readonly baseURL: string = 'http://localhost:5000/book';
-  readonly popularURL: string = 'http://localhost:5000/book/books/top';
+  readonly baseURL: string = 'https://good-reads-iti.herokuapp.com/book';
+  readonly popularURL: string =
+    'https://good-reads-iti.herokuapp.com/book/books/top';
 
   getAllBooks() {
     const res = this.bookClient.get(this.baseURL, { observe: 'response' });

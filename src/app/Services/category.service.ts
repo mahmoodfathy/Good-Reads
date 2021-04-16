@@ -10,7 +10,7 @@ export class CategoryService {
   PORT = 5000;
   token: string = '';
   headers: any = { 'x-auth-token': '' };
-  readonly baseUrl = `http://localhost:${this.PORT}/category`;
+  readonly baseUrl = `https://good-reads-iti.herokuapp.com/category`;
   addCategory(category: string) {
     this.token = getToken();
     this.headers = { 'x-auth-token': this.token };

@@ -10,7 +10,7 @@ export class BookService {
   constructor(private client: HttpClient) {}
   PORT = 5000;
   token = '';
-  readonly baseUrl = `http://localhost:${this.PORT}/book`;
+  readonly baseUrl = `https://good-reads-iti.herokuapp.com/book`;
   headers: any = { 'x-auth-token': '' };
 
   getBooks() {

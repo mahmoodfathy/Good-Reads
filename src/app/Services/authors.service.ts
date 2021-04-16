@@ -6,9 +6,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthorsService {
   constructor(private authorClient: HttpClient) {}
-  readonly baseURL: string = 'http://localhost:5000/author';
-  readonly popularURL: string = 'http://localhost:5000/author/authors/top';
-  readonly bookURL: string = 'http://localhost:5000/book/author';
+  readonly baseURL: string = 'https://good-reads-iti.herokuapp.com/author';
+  readonly popularURL: string =
+    'https://good-reads-iti.herokuapp.com/author/authors/top';
+  readonly bookURL: string = 'https://good-reads-iti.herokuapp.com/book/author';
 
   getAllAuthors() {
     const res = this.authorClient.get(this.baseURL, { observe: 'response' });

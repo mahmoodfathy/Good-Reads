@@ -11,7 +11,7 @@ export class AuthorService {
   PORT = 5000;
   token = '';
   headers: any = { 'x-auth-token': '' };
-  readonly baseUrl = `http://localhost:${this.PORT}/author`;
+  readonly baseUrl = `https://good-reads-iti.herokuapp.com/author`;
   getAuthors() {
     return this.client.get(this.baseUrl);
   }

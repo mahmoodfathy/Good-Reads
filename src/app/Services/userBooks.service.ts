@@ -20,7 +20,7 @@ export class UserBooksService {
   getUserBooks() {
     const userId = decodeToken().id;
 
-    const baseUrl = `http://localhost:${this.port}/user/${userId}/books`;
+    const baseUrl = `https://good-reads-iti.herokuapp.com/user/${userId}/books`;
 
     const token = getToken();
     const headers = { 'x-auth-token': token };
@@ -30,7 +30,7 @@ export class UserBooksService {
   addBookToUser(body: { bookId: string; shelf: string }) {
     const userId = decodeToken().id;
 
-    const baseUrl = `http://localhost:${this.port}/user/${userId}/books`;
+    const baseUrl = `https://good-reads-iti.herokuapp.com/user/${userId}/books`;
 
     const token = getToken();
     const headers = { 'x-auth-token': token };
@@ -40,7 +40,7 @@ export class UserBooksService {
   updateUserShelf(body: { bookId: string; shelf: string }) {
     const userId = decodeToken().id;
 
-    const baseUrl = `http://localhost:${this.port}/user/${userId}/books`;
+    const baseUrl = `https://good-reads-iti.herokuapp.com/user/${userId}/books`;
 
     const token = getToken();
     const headers = { 'x-auth-token': token };
