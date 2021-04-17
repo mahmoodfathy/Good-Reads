@@ -82,7 +82,7 @@
           [value]="isLoading ? 'loading...' : 'Add Review'"
           [disabled]="myForm.invalid || isLoading"
         />
-        <p class="text-danger" *ngIf="myForm.invalid">
+        <p class="text-danger" *ngIf="myForm.invalid && myForm.touched">
           Review must be atleast 10 charachters
         </p>
       </form>
