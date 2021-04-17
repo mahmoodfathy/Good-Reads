@@ -38,6 +38,7 @@ export class BookDetailsComponent implements OnInit {
   userInfoSubscriber: Subscription;
   authSubscriber: Subscription;
   isAuth: boolean;
+  userId: string;
 
   setSelectedValue(event: any) {
     this.selectedValue = event.target.value;
@@ -103,9 +104,9 @@ export class BookDetailsComponent implements OnInit {
     this.id = this.myActivatedRoute.snapshot.params.id;
     this.userInfoSubscriber = this.myService
       .getUserInfo()
-      .subscribe((res: IUser) => {
+      .subscribe((res: any) => {
         this.userInfo = res;
-        console.log(res);
+        this.userId = res.id || res._id;
       });
     this.subscriber = this.bookService.getBookById(this.id).subscribe(
       (response: any) => {
@@ -123,7 +124,7 @@ export class BookDetailsComponent implements OnInit {
 
   addReview() {
     let body: any = {
-      userId: this.userInfo._id,
+      userId: this.userInfo._id || this.userId,
       userName: this.userInfo.username,
       text: this.review,
     };
@@ -149,7 +150,7 @@ export class BookDetailsComponent implements OnInit {
     starRating: StarRatingComponent;
   }) {
     let body: any = {
-      userId: this.userInfo._id,
+      userId: this.userInfo._id || this.userId,
     };
 
     this.readOnly = true;

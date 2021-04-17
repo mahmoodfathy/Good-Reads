@@ -115,8 +115,7 @@ exports.getMostPopular = async (req, res, next) => {
   try {
     const topBooks = await BookModel.find({
       totalRatingCount: { $gte: 2 },
-    })
-    .limit(3);
+    }).limit(3);
     if (!topBooks) {
       return res.status(404).json({ message: "No Popular books found" });
     }
@@ -176,7 +175,7 @@ exports.addReview = async (req, res) => {
       id,
       { $push: { reviews: req.body } },
       { new: true }
-    );
+    ).populate("author");
 
     if (!book) return res.status(404).send({ error: "No such book found" });
 

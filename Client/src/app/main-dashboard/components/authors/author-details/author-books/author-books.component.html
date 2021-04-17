@@ -37,7 +37,7 @@
             -</span
           >
           <span> {{ book.totalRatingCount }} Ratings -</span>
-          <span> {{ book.totalReviewsCount }} Reviews</span>
+          <span> {{ book.reviews.length }} Reviews</span>
         </div>
         <div class="col-3 float-right" *ngIf="isAutharized">
           <select

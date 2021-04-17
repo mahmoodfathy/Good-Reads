@@ -21,10 +21,6 @@ describe("Category Tests", () => {
       body: {},
       method: "POST",
       failOnStatusCode: false,
-      headers: {
-        "x-auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjA2YTI3M2M3NTU1OTQ0NDA0MmFmNGM0IiwiaXNBZG1pbiI6dHJ1ZX0sImlhdCI6MTYxNzU2OTU5NiwiZXhwIjoxNjE3NjA1NTk2fQ.CiYGJdYMao2LusV_pJy4gh6qLdvPUQc3FQZRjyPcF70",
-      },
     }).then((response) => {
       expect(response).property("status").to.equal(400);
       expect(response.body).to.have.property("message");
@@ -39,10 +35,6 @@ describe("Category Tests", () => {
       body: { categoryName: "Fiction" },
       method: "PATCH",
       failOnStatusCode: false,
-      headers: {
-        "x-auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjA2YTI3M2M3NTU1OTQ0NDA0MmFmNGM0IiwiaXNBZG1pbiI6dHJ1ZX0sImlhdCI6MTYxNzU2OTU5NiwiZXhwIjoxNjE3NjA1NTk2fQ.CiYGJdYMao2LusV_pJy4gh6qLdvPUQc3FQZRjyPcF70",
-      },
     }).then((response) => {
       expect(response).property("status").to.equal(200);
       expect(response.body)
@@ -53,13 +45,9 @@ describe("Category Tests", () => {
   it("Makes a Patch Request to Update Category Which Doesn't Exist", () => {
     cy.request({
       url: `http://localhost:${PORT}/category/${DOESNT_EXIST_ID}`,
-      body: { categoryName: "Fiction" },
+      body: { category: "Fiction" },
       method: "PATCH",
       failOnStatusCode: false,
-      headers: {
-        "x-auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjA2YTI3M2M3NTU1OTQ0NDA0MmFmNGM0IiwiaXNBZG1pbiI6dHJ1ZX0sImlhdCI6MTYxNzU2OTU5NiwiZXhwIjoxNjE3NjA1NTk2fQ.CiYGJdYMao2LusV_pJy4gh6qLdvPUQc3FQZRjyPcF70",
-      },
     }).then((response) => {
       expect(response).property("status").to.equal(400);
       expect(response.body)
@@ -70,7 +58,7 @@ describe("Category Tests", () => {
 
   it("Makes a Delete Request to Delete the newly created category by cypress", () => {
     cy.task("getCategoriesTask").then((categories) => {
-      const lastCategoryId = categories[2]._id;
+      const lastCategoryId = categories[2]._id; // change the index based on the record number in the database
       cy.request({
         url: `http://localhost:${PORT}/category/${lastCategoryId}`,
         method: "DELETE",
@@ -83,7 +71,7 @@ describe("Category Tests", () => {
     });
   });
 
-  console.log(lastCategoryId);
+  // console.log(lastCategoryId);
 
   it("Makes a get request to fetch all categories", () => {
     //my first category is Thrill , change it to first category in ur db

@@ -263,7 +263,7 @@ const getUser = async (req, res) => {
   let { id } = req.user;
   console.log(id);
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(id).select("-password");
     if (!user) {
       return res.status(404).json({ message: "No user Found" });
     }
