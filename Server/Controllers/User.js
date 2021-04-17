@@ -30,18 +30,23 @@ const userRegister = async (req, res) => {
       },
     };
     console.log(payload);
-    jwt.sign(payload, "123456", { expiresIn: 36000 }, (err, token) => {
-      if (err) throw err;
-      res.status(200);
-      return res.send({
-        username: user.username,
-        id: user._id,
-        books: user.books,
-        imageUrl: user.imageUrl,
-        isAdmin: user.isAdmin,
-        token: token,
-      });
-    });
+    jwt.sign(
+      payload,
+      process.env.SECRET,
+      { expiresIn: 36000 },
+      (err, token) => {
+        if (err) throw err;
+        res.status(200);
+        return res.send({
+          username: user.username,
+          id: user._id,
+          books: user.books,
+          imageUrl: user.imageUrl,
+          isAdmin: user.isAdmin,
+          token: token,
+        });
+      }
+    );
   } catch (err) {
     res.status(500);
     return res.send({ error: "server error" });
@@ -69,7 +74,9 @@ const userLogin = async (req, res) => {
         isAdmin: user.isAdmin,
       },
     };
-    const token = await jwt.sign(payload, "123456", { expiresIn: 36000 });
+    const token = await jwt.sign(payload, process.env.SECRET, {
+      expiresIn: 36000,
+    });
     console.log(user);
     res.status(200);
 
