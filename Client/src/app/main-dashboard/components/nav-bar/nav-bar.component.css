@@ -1,0 +1,35 @@
+.avatar {
+  height: 40px;
+  width: 50px;
+  border-radius: 50%;
+  padding: 0;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.username {
+  color: white;
+  display: inline;
+  margin-right: 10px;
+}
+
+nav {
+  background-color: #34325e;
+}
+
+a {
+  color: #fff;
+}
+.active {
+  background-color: #6159e6;
+
+  color: #fff !important;
+  border-radius: 8px;
+}
+.signout {
+  color: #fff;
+  transition: 0.25 all ease-in-out;
+}
+.signout:hover {
+  background-color: #6159e6;
+  color: #fff;
+}

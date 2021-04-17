@@ -1,0 +1,155 @@
+<button class="btn btn-primary add" (click)="handleNewBookRender(content)">
+  Add Book
+</button>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" *ngIf="newMode" id="modal-basic-title">
+      Add New Book
+    </h4>
+    <h4 class="modal-title" *ngIf="editMode" id="modal-basic-title">
+      Edit Book
+    </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="filter">
+      <div class="form-group">
+        <label for="name">Book Name</label>
+        <div class="input-group">
+          <input
+            id="Name"
+            class="form-control"
+            placeholder="Please Enter Book Name.."
+            name="dp"
+            type="text"
+            formControlName="name"
+            [(ngModel)]="name"
+          />
+        </div>
+        <label for="description">Description</label>
+        <div class="input-group">
+          <input
+            id="Description"
+            class="form-control"
+            placeholder="Please Enter Book Description.."
+            type="text"
+            formControlName="description"
+            [(ngModel)]="description"
+          />
+        </div>
+        <label for="id">Enter Category</label>
+        <div class="input-group">
+          <select
+            id="category id"
+            class="form-control"
+            (change)="handleCategorySelect($event)"
+          >
+            <option *ngFor="let category of categories" [value]="category._id">
+              {{ category.category }}
+            </option>
+          </select>
+        </div>
+        <label for="id">Select Author</label>
+        <div class="input-group">
+          <select
+            id="author id"
+            class="form-control"
+            (change)="handleAuthorSelect($event)"
+          >
+            <option *ngFor="let author of authors" [value]="author._id">
+              {{ author.firstname }}
+            </option>
+          </select>
+        </div>
+        <label for="imageLink">Cover Image Link</label>
+        <div class="input-group">
+          <input
+            id="Name"
+            class="form-control"
+            placeholder="Please Enter Cover Image Link.."
+            name="dp"
+            type="text"
+            formControlName="bookImage"
+            [(ngModel)]="bookImage"
+          />
+        </div>
+      </div>
+    </form>
+
+    <div *ngIf="newMode" class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        [disabled]="!filter.valid"
+        (click)="addNewBook()"
+      >
+        Save
+      </button>
+    </div>
+    <div *ngIf="editMode" class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="handleEdit($event)"
+      >
+        Edit
+      </button>
+    </div>
+  </div>
+</ng-template>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Author</th>
+      <th scope="col">Image Link</th>
+      <th scope="col">Category</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+
+      <td>
+        {{ book.name }}
+      </td>
+      <td>{{ book.author ? book.author.firstname : null }}</td>
+      <td>
+        <img
+          class="image"
+          [src]="
+            book.cover
+              ? book.cover
+              : 'https://compellingreads.co.uk/wp-content/uploads/unknown-book-263x300.jpg'
+          "
+          alt=""
+        />
+      </td>
+      <td>{{ book.category ? book.category.category : null }}</td>
+      <td>
+        <button
+          class="btn btn-danger delete"
+          [id]="book._id"
+          (click)="handleDelete($event)"
+        >
+          Delete
+        </button>
+        <button
+          (click)="handleEditRender($event, content)"
+          [id]="book._id"
+          class="btn btn-primary"
+          [attr.data-index]="i"
+        >
+          Edit
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

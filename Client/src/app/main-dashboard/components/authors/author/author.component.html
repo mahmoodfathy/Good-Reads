@@ -1,0 +1,8 @@
+  <div class="card">
+  <img class="card-img-top" [src]="author.imageURL?author.imageURL:'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255634-stock-illustration-avatar-icon-male-profile-gray.jpg'" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">
+      <a [routerLink]="[author._id]" class="btn btn-primary">{{author.firstname}} {{author.lastname}}</a>
+    </h5>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div *ngIf="pagedItems.length !== 0" class="row box pt-4">
+  <div class="col-12">
+    <div *ngFor="let book of pagedItems">
+      <div class="row my-4">
+        <div class="col-2">
+          <a [routerLink]="['/', 'book', book._id]">
+            <img
+              class="img-fluid"
+              [src]="
+                book.cover
+                  ? book.cover
+                  : 'https://compellingreads.co.uk/wp-content/uploads/unknown-book-263x300.jpg'
+              "
+            />
+          </a>
+        </div>
+        <div class="col-6 mt-3">
+          <a [routerLink]="['/', 'book', book._id]" class="mb-3">{{
+            book.name
+          }}</a>
+          <span>
+            <star-rating
+              [value]="book.totalRatingValue / book.totalRatingCount"
+              size="24px"
+              [totalstars]="totalStars"
+              checkedcolor="gold"
+              [readonly]="true"
+            >
+            </star-rating>
+          </span>
+          <span>
+            {{
+              book.totalRatingCount
+                ? book.totalRatingValue / book.totalRatingCount
+                : 0
+            }}
+            -</span
+          >
+          <span> {{ book.totalRatingCount }} Ratings -</span>
+          <span> {{ book.reviews.length }} Reviews</span>
+        </div>
+        <div class="col-3 float-right" *ngIf="isAutharized">
+          <select
+            [id]="book._id"
+            class="form-select"
+            aria-label="Default select example"
+            (change)="setSelectedValue($event)"
+          >
+            <option selected></option>
+            <option>currently reading</option>
+            <option value="read">Read</option>
+            <option value="want to read">Want To Read</option>
+          </select>
+        </div>
+        <hr />
+      </div>
+      <hr />
+    </div>
+    <ul
+      *ngIf="pager.pages && pager.pages.length"
+      class="pagination justify-content-end"
+    >
+      <li class="page-item" [ngClass]="{ disabled: pager.currentPage === 1 }">
+        <a class="page-link" (click)="setPage(1)">First</a>
+      </li>
+      <li class="page-item" [ngClass]="{ disabled: pager.currentPage === 1 }">
+        <a class="page-link" (click)="setPage(pager.currentPage - 1)">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li
+        class="page-item"
+        *ngFor="let page of pager.pages"
+        [ngClass]="{ active: pager.currentPage === page }"
+      >
+        <a class="page-link" (click)="setPage(page)">{{ page }}</a>
+      </li>
+      <li
+        class="page-item"
+        [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"
+      >
+        <a class="page-link" (click)="setPage(pager.currentPage + 1)">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      <li
+        class="page-item"
+        [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"
+      >
+        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+      </li>
+    </ul>
+  </div>
+</div>

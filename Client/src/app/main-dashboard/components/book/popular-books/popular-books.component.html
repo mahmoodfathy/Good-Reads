@@ -1,0 +1,12 @@
+<div *ngFor="let book of popularBooks" class="book-card text-center">
+  <img
+    [src]="
+      book.cover
+        ? book.cover
+        : 'https://www.sheilaoflanagan.com/wp-content/uploads/2018/07/missingbook.png'
+    "
+  />
+  <a [routerLink]="['/book', book._id]"
+    ><span>{{ book.name }}</span></a
+  >
+</div>

@@ -1,0 +1,86 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Author</th>
+      <th scope="col">AvgRating</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Shelve</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let bookObj of booksArr; index as i">
+      <td>
+        {{ bookObj.book.name }}
+      </td>
+      <td>
+        {{ bookObj.book.author ? bookObj.book.author.firstname : "unknown" }}
+      </td>
+      <td>
+        <star-rating
+          [value]="
+            bookObj.book.totalRatingCount > 0
+              ? bookObj.book.totalRatingValue / bookObj.book.totalRatingCount
+              : 0
+          "
+          [totalstars]="5"
+          [readonly]="true"
+          checkedcolor="#D4AF37"
+          uncheckedcolor="#ccc"
+          size="24px"
+        ></star-rating>
+      </td>
+      <td>{{ bookObj.book.totalRatingCount }}</td>
+      <td>{{ bookObj.shelf }}</td>
+      <td>
+        <button
+          class="btn btn-primary"
+          attr.data-id="{{ bookObj.book._id }}"
+          (click)="open(content, $event)"
+        >
+          Edit Shelf
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update Shelf</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Choose shelf</label>
+        <div class="input-group" *ngIf="!isLoading; else elseBlock">
+          <select (change)="setSelectedValue($event)">
+            <option value="read" selected>read</option>
+            <option value="want to read">want to read</option>
+            <option value="currently reading">currently reading</option>
+            <option value="none">none</option>
+          </select>
+        </div>
+        <ng-template #elseBlock>Loading....</ng-template>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="handleShelfUpdate()"
+    >
+      Save
+    </button>
+  </div>
+</ng-template>

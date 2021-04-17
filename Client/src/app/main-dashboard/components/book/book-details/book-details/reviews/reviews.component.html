@@ -1,0 +1,5 @@
+<div class="review" *ngFor="let review of reviews; index as i">
+  <p>User: {{ review.userName }}</p>
+  <p>Date: {{ review.createdAt | date }}</p>
+  <p>Review: {{ review.text }}</p>
+</div>
